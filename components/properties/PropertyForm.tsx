@@ -26,7 +26,7 @@ export default function PropertyForm({
   description,
   setDescription,
 }: Props) {
-  const { name, price, image, beds, baths, guests, ratings, file, isFeatured } =
+  const { name, price, image, beds, baths, guests, rating, file, isFeatured } =
     property;
 
   function handlePropertyChange(e: ChangeEvent<HTMLInputElement>) {
@@ -94,13 +94,13 @@ export default function PropertyForm({
           />
         </div>
 
-        <div className={styles.ratings}>
-          <label htmlFor='ratings'>Property ratings</label>
+        <div className={styles.rating}>
+          <label htmlFor='ratings'>Property rating</label>
           <input
-            id='ratings'
+            id='rating'
             type='text'
-            value={ratings}
-            placeholder='Enter property ratings'
+            value={rating}
+            placeholder='Enter property rating'
             onChange={handlePropertyChange}
           />
         </div>

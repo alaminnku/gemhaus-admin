@@ -13,7 +13,7 @@ export default function AddProperty() {
     beds: '',
     baths: '',
     guests: '',
-    ratings: '',
+    rating: '',
     type: '',
     isFeatured: false,
     file: undefined,

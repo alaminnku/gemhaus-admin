@@ -14,7 +14,7 @@
 .beds label,
 .baths label,
 .guests label,
-.ratings label,
+.rating label,
 .description label {
   display: inline-block;
   margin-bottom: 0.25rem;
@@ -29,7 +29,7 @@
 .beds input,
 .baths input,
 .guests input,
-.ratings input {
+.rating input {
   padding: 0.75rem 1rem;
   width: 100%;
   border-radius: 0.5rem;

@@ -12,7 +12,7 @@ export type Property = {
   beds: string;
   baths: string;
   guests: string;
-  ratings: string;
+  rating: string;
   type: string;
   isFeatured: boolean;
   file: File | undefined;
