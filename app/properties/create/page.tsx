@@ -1,3 +1,9 @@
+import AddProperty from '@components/properties/AddProperty';
+
 export default function page() {
-  return <main>page</main>;
+  return (
+    <main>
+      <AddProperty />
+    </main>
+  );
 }

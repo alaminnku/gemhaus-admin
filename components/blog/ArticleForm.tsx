@@ -1,12 +1,11 @@
 'use client';
 
 import styles from './ArticleForm.module.css';
-import 'react-quill/dist/quill.snow.css';
-import ReactQuill from 'react-quill';
-import { ChangeEvent, Dispatch, SetStateAction, useRef, useState } from 'react';
-import { FiUpload } from 'react-icons/fi';
-import Image from 'next/image';
+import { ChangeEvent, Dispatch, SetStateAction } from 'react';
 import { Article } from 'types';
+import TextEditor from '@components/layout/TextEditor';
+import ImageUpload from '@components/layout/ImageUpload';
+import SubmitButton from '@components/layout/SubmitButton';
 
 type Props = {
   article: Article;
@@ -18,13 +17,6 @@ type Props = {
   handleSubmit: () => Promise<void>;
 };
 
-const TOOLBAR_OPTIONS = [
-  [{ header: [2, 3, 4, 5, 6, false] }],
-  [{ list: 'ordered' }, { list: 'bullet' }],
-  ['bold', 'italic', 'underline', 'blockquote'],
-  ['clean'],
-];
-
 export default function ArticleForm({
   article,
   content,
@@ -34,20 +26,14 @@ export default function ArticleForm({
   setContent,
   handleSubmit,
 }: Props) {
-  const imageRef = useRef<HTMLDivElement>(null);
   const { title, slug, image, file } = article;
 
-  function handleChangeArticle(e: ChangeEvent<HTMLInputElement>) {
+  function handleArticleChange(e: ChangeEvent<HTMLInputElement>) {
     setArticle((prevState) => ({
       ...prevState,
       [e.target.id]: e.target.value,
     }));
   }
-
-  const formatImageName = (name: string) =>
-    name.length > 15
-      ? `${name.slice(0, 10)}.${name.split('.')[name.split('.').length - 1]}`
-      : name;
 
   return (
     <>
@@ -57,7 +43,7 @@ export default function ArticleForm({
           type='text'
           id='title'
           value={title}
-          onChange={handleChangeArticle}
+          onChange={handleArticleChange}
           placeholder='Enter your article title'
         />
       </div>
@@ -68,78 +54,20 @@ export default function ArticleForm({
           type='text'
           id='slug'
           value={slug}
-          onChange={handleChangeArticle}
+          onChange={handleArticleChange}
           placeholder='Enter your article slug'
         />
       </div>
 
       <div className={styles.content}>
-        <label htmlFor='content'>Article content</label>
-        <ReactQuill
-          theme='snow'
-          value={content}
-          onChange={setContent}
-          modules={{ toolbar: TOOLBAR_OPTIONS }}
-        />
+        <label>Article content</label>
+        <TextEditor value={content} setValue={setContent} />
       </div>
 
-      <div className={styles.upload_and_image}>
-        <div className={styles.upload}>
-          {file ? (
-            <div className={styles.file_name_and_remove_button}>
-              {formatImageName(file.name)}
-              <span
-                className={styles.remove_upload}
-                onClick={() =>
-                  setArticle((prevState) => ({
-                    ...prevState,
-                    file: undefined,
-                  }))
-                }
-              >
-                Remove
-              </span>
-            </div>
-          ) : (
-            <div className={styles.upload_icon_and_text}>
-              <FiUpload /> Upload image
-              <input
-                type='file'
-                id='image'
-                accept='image/*'
-                onChange={(e) =>
-                  setArticle((prevState) => ({
-                    ...prevState,
-                    file: e.target.files?.[0],
-                  }))
-                }
-              />
-            </div>
-          )}
-        </div>
+      {/* @ts-ignore */}
+      <ImageUpload file={file} image={image} setState={setArticle} />
 
-        {image && (
-          <div className={styles.image} ref={imageRef}>
-            <Image src={image} width={1600} height={1000} alt='Article image' />
-
-            <span
-              className={styles.remove_image}
-              onClick={() =>
-                setArticle((prevState) => ({
-                  ...prevState,
-                  image: '',
-                }))
-              }
-            >
-              Remove
-            </span>
-          </div>
-        )}
-      </div>
-
-      <button className={styles.submit_button} onClick={handleSubmit}>
-        {buttonText}
-      </button>
+      <SubmitButton buttonText={buttonText} handleSubmit={handleSubmit} />
     </>
   );
 }
