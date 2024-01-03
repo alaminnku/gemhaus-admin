@@ -4,6 +4,8 @@ import styles from '@components/layout/DesktopNav.module.css';
 import Logo from './Logo';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { HiOutlineUserCircle } from 'react-icons/hi2';
+import { IoIosLogOut } from 'react-icons/io';
 
 export default function DesktopNav() {
   const pathname = usePathname();
@@ -25,6 +27,14 @@ export default function DesktopNav() {
         >
           Blog
         </Link>
+
+        {/* <Link href='/sign-in' className={styles.sign_in}>
+          Sign in <HiOutlineUserCircle />
+        </Link> */}
+
+        <button className={styles.logout}>
+          Logout <IoIosLogOut />
+        </button>
       </div>
     </nav>
   );

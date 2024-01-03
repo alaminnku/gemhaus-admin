@@ -18,3 +18,22 @@
 .navigation a.active {
   border-bottom: 1px solid var(--black);
 }
+
+.navigation .sign_in,
+.logout {
+  display: flex;
+  align-items: center;
+  border-radius: 2rem;
+  padding: 0.5rem 1rem;
+  color: var(--white);
+  background-color: var(--green);
+}
+
+.navigation svg {
+  margin-left: 0.5rem;
+  font-size: 1.25rem;
+}
+
+.logout {
+  border: none;
+}
