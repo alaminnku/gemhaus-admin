@@ -36,8 +36,6 @@ export default function PropertyForm({
     }));
   }
 
-  console.log(property);
-
   return (
     <>
       <div className={styles.items}>

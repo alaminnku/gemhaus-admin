@@ -66,7 +66,6 @@ export default function ArticleForm({
 
       {/* @ts-ignore */}
       <ImageUpload file={file} image={image} setState={setArticle} />
-
       <SubmitButton buttonText={buttonText} handleSubmit={handleSubmit} />
     </>
   );
