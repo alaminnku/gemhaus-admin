@@ -5,7 +5,6 @@ import 'react-quill/dist/quill.snow.css';
 import ReactQuill from 'react-quill';
 import { ChangeEvent, Dispatch, SetStateAction, useRef, useState } from 'react';
 import { FiUpload } from 'react-icons/fi';
-import { RiDeleteBinLine } from 'react-icons/ri';
 import Image from 'next/image';
 import { Article } from 'types';
 
@@ -18,6 +17,13 @@ type Props = {
   setContent: Dispatch<SetStateAction<string>>;
   handleSubmit: () => Promise<void>;
 };
+
+const TOOLBAR_OPTIONS = [
+  [{ header: [2, 3, 4, 5, 6, false] }],
+  [{ list: 'ordered' }, { list: 'bullet' }],
+  ['bold', 'italic', 'underline', 'blockquote'],
+  ['clean'],
+];
 
 export default function ArticleForm({
   article,
@@ -69,7 +75,12 @@ export default function ArticleForm({
 
       <div className={styles.content}>
         <label htmlFor='content'>Article content</label>
-        <ReactQuill theme='snow' value={content} onChange={setContent} />
+        <ReactQuill
+          theme='snow'
+          value={content}
+          onChange={setContent}
+          modules={{ toolbar: TOOLBAR_OPTIONS }}
+        />
       </div>
 
       <div className={styles.upload_and_image}>
@@ -125,6 +136,10 @@ export default function ArticleForm({
           </div>
         )}
       </div>
+
+      <button className={styles.submit_button} onClick={handleSubmit}>
+        {buttonText}
+      </button>
     </>
   );
 }
