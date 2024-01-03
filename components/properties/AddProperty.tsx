@@ -25,7 +25,7 @@ export default function AddProperty() {
 
   return (
     <section className={styles.container}>
-      <h1>Add property</h1>
+      <h1>Add Property</h1>
 
       <PropertyForm
         property={property}

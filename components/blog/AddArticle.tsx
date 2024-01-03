@@ -20,7 +20,7 @@ export default function AddArticle() {
 
   return (
     <section className={styles.container}>
-      <h1>Add article</h1>
+      <h1>Add Article</h1>
 
       <ArticleForm
         article={article}
