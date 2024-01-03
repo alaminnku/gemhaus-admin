@@ -1,0 +1,9 @@
+.action_button {
+  display: inline-block;
+  border-radius: 0.5rem;
+  padding: 0.75rem 2rem;
+  color: var(--white);
+  font-weight: 500;
+  margin-bottom: 1rem;
+  background-color: var(--green);
+}
