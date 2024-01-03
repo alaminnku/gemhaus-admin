@@ -1,0 +1,105 @@
+.title,
+.slug,
+.content {
+  margin-bottom: 2rem;
+}
+
+.title label,
+.slug label,
+.content label {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+
+.title input,
+.slug input {
+  padding: 0.75rem 1rem;
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+}
+
+.upload_and_image {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 500;
+  height: 8rem;
+  min-width: 13rem;
+  padding: 1rem;
+  margin-right: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+}
+
+.upload input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  height: 10rem;
+  cursor: pointer;
+}
+
+.file_name_and_remove_button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.upload_icon_and_text {
+  display: flex;
+  align-items: center;
+}
+
+.upload_icon_and_text svg {
+  font-size: 1.25rem;
+  margin-right: 0.5rem;
+}
+
+.remove_upload,
+.remove_image {
+  display: flex;
+  align-items: center;
+  color: red;
+  font-weight: 400;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 2rem;
+}
+
+.remove_upload {
+  z-index: 1;
+  padding: 4px 12px;
+  margin-top: 1.25rem;
+  border: 1px solid red;
+}
+
+.image {
+  display: flex;
+  position: relative;
+}
+
+.image img {
+  width: 12.5rem;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+.remove_image {
+  left: 50%;
+  bottom: 0.5rem;
+  translate: -50% 0%;
+  position: absolute;
+  background: var(--white);
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+}

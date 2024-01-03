@@ -65,3 +65,11 @@ textarea {
 textarea {
   resize: none;
 }
+
+.ql-toolbar.ql-snow {
+  border-radius: 0.5rem 0.5rem 0rem 0rem;
+}
+
+.ql-container.ql-snow {
+  border-radius: 0rem 0rem 0.5rem 0.5rem;
+}
