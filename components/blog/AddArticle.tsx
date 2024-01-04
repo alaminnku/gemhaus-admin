@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import ArticleForm from './ArticleForm';
 import { Article } from 'types';
 import styles from './AddArticle.module.css';
+import revalidate from '@utils/revalidate';
+import { fetchInstance } from '@utils/index';
 
 export default function AddArticle() {
   const [article, setArticle] = useState<Article>({
@@ -25,11 +27,8 @@ export default function AddArticle() {
     data.append('content', content);
 
     try {
-      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/articles`, {
-        method: 'POST',
-        body: data,
-        credentials: 'include',
-      });
+      await fetchInstance('/articles', { method: 'POST', body: data });
+      revalidate('articles');
     } catch (err) {
       console.log(err);
     }

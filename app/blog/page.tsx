@@ -1,16 +1,11 @@
-'use client';
-
 import ArticleCards from '@components/blog/ArticleCards';
-import { useCustomSWR } from '@utils/index';
-import { Article } from 'types';
+import { fetchInstance } from '@utils/index';
 
-export default function page() {
-  const { isLoading, data, error } = useCustomSWR('/articles');
-  const articles: Article[] = data;
-  return (
-    <main>
-      {isLoading && <h2>Loading...</h2>}
-      {!isLoading && !error && <ArticleCards articles={articles} />}
-    </main>
-  );
+export default async function page() {
+  const articles = await fetchInstance('/articles', {
+    cache: 'no-cache',
+    next: { tags: ['articles'] },
+  });
+
+  return <main>{<ArticleCards articles={articles} />}</main>;
 }

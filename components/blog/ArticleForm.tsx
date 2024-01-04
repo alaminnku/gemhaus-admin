@@ -1,5 +1,3 @@
-'use client';
-
 import styles from './ArticleForm.module.css';
 import { ChangeEvent, Dispatch, SetStateAction } from 'react';
 import { Article } from 'types';
@@ -35,6 +33,8 @@ export default function ArticleForm({
     }));
   }
 
+  function hello() {}
+
   return (
     <>
       <div className={styles.title}>
@@ -42,6 +42,7 @@ export default function ArticleForm({
         <input
           type='text'
           id='title'
+          name='title'
           value={title}
           onChange={handleArticleChange}
           placeholder='Enter your article title'
