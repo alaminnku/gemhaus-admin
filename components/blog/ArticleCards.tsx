@@ -3,12 +3,11 @@ import styles from './ArticleCards.module.css';
 import ArticleCard from './ArticleCard';
 import { Article } from 'types';
 
-export default async function ArticleCards() {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/articles`, {
-    credentials: 'include',
-  });
-  const articles: Article[] = await response.json();
+type Props = {
+  articles: Article[];
+};
 
+export default function ArticleCards({ articles }: Props) {
   return (
     <section className={styles.container}>
       <ActionButton href='/blog/create' text='+ Add Article' />
@@ -17,12 +16,6 @@ export default async function ArticleCards() {
         {articles.map((article) => (
           <ArticleCard article={article} />
         ))}
-        {/* <ArticleCard />
-        <ArticleCard />
-        <ArticleCard />
-        <ArticleCard />
-        <ArticleCard />
-        <ArticleCard /> */}
       </div>
     </section>
   );

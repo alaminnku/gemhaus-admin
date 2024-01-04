@@ -16,6 +16,7 @@ export default function AddArticle() {
   const [content, setContent] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+  // Add article
   async function handleSubmit() {
     const data = new FormData();
     data.append('title', title);
@@ -24,15 +25,11 @@ export default function AddArticle() {
     data.append('content', content);
 
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/articles`,
-        {
-          method: 'POST',
-          body: data,
-          credentials: 'include',
-        }
-      );
-      const article = await response.json();
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/articles`, {
+        method: 'POST',
+        body: data,
+        credentials: 'include',
+      });
     } catch (err) {
       console.log(err);
     }
