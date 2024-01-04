@@ -11,9 +11,19 @@ export const formatUploadImageName = (name: string) =>
     : name;
 
 export async function fetchInstance(path: string, options?: FetchOptions) {
+  let data;
+  let error;
+
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${path}`, {
     ...options,
     credentials: 'include',
   });
-  return await response.json();
+  const result = await response.json();
+
+  if (!response.ok) {
+    error = { ...result, status: response.status };
+  } else {
+    data = result;
+  }
+  return { data, error };
 }

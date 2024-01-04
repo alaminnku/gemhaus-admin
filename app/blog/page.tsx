@@ -1,11 +1,23 @@
+'use client';
+
 import ArticleCards from '@components/blog/ArticleCards';
-import { fetchInstance } from '@utils/index';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
-export default async function page() {
-  const articles = await fetchInstance('/articles', {
-    cache: 'no-cache',
-    next: { tags: ['articles'] },
-  });
+export default function page() {
+  const router = useRouter();
 
-  return <main>{<ArticleCards articles={articles} />}</main>;
+  const isUser = true;
+
+  useEffect(() => {
+    if (!isUser) {
+      router.push('/properties');
+    }
+  }, [isUser]);
+
+  return (
+    <main>
+      <ArticleCards />
+    </main>
+  );
 }
