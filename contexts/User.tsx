@@ -11,7 +11,7 @@ const UserContext = createContext({} as UserContext);
 export const useUser = () => useContext(UserContext);
 
 export default function UserProvider({ children }: { children: ReactNode }) {
-  const isUser = false;
+  const isUser = true;
   const isLoading = false;
 
   return (
