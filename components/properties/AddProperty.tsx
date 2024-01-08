@@ -6,8 +6,10 @@ import { Property } from 'types';
 import styles from './AddProperty.module.css';
 import { fetchInstance } from '@utils/index';
 import revalidate from '@utils/revalidate';
+import { useRouter } from 'next/navigation';
 
 export default function AddProperty() {
+  const router = useRouter();
   const [property, setProperty] = useState<Property>({
     name: '',
     price: '',
@@ -44,6 +46,7 @@ export default function AddProperty() {
 
     await fetchInstance('/properties', { method: 'POST', body: data });
     revalidate('properties');
+    router.push('/properties');
   }
 
   return (

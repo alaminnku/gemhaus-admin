@@ -6,11 +6,11 @@ type Props = {
   articles: Article[];
 };
 
-export default async function ArticleCards({ articles }: Props) {
+export default function ArticleCards({ articles }: Props) {
   return (
     <div className={styles.container}>
-      {articles.map((article, index) => (
-        <ArticleCard key={index} article={article} />
+      {articles.map((article) => (
+        <ArticleCard key={article._id} article={article} />
       ))}
     </div>
   );

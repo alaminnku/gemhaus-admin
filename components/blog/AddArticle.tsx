@@ -6,8 +6,10 @@ import { Article } from 'types';
 import styles from './AddArticle.module.css';
 import revalidate from '@utils/revalidate';
 import { fetchInstance } from '@utils/index';
+import { useRouter } from 'next/navigation';
 
 export default function AddArticle() {
+  const router = useRouter();
   const [article, setArticle] = useState<Article>({
     title: '',
     image: '',
@@ -27,6 +29,7 @@ export default function AddArticle() {
     try {
       await fetchInstance('/articles', { method: 'POST', body: data });
       revalidate('articles');
+      router.push('/blog');
     } catch (err) {
       console.log(err);
     }
