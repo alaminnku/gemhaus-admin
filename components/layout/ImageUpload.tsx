@@ -8,7 +8,7 @@ import Image from 'next/image';
 type Props = {
   image: string;
   file: File | undefined;
-  setState: Dispatch<SetStateAction<Property | Article>>;
+  setState: Dispatch<SetStateAction<Article>>;
 };
 
 export default function ImageUpload({ file, image, setState }: Props) {

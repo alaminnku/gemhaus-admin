@@ -1,10 +1,9 @@
 import ArticleCards from '@components/blog/ArticleCards';
-import AuthProvider from '@components/layout/AuthProvider';
 
-export default function page() {
+export default async function BlogPage() {
   return (
-    <AuthProvider>
+    <main>
       <ArticleCards />
-    </AuthProvider>
+    </main>
   );
 }

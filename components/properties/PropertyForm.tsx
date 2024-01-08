@@ -3,7 +3,7 @@
 import { ChangeEvent, Dispatch, SetStateAction } from 'react';
 import { Property } from 'types';
 import styles from './PropertyForm.module.css';
-import TextEditor from '@components/layout/TextEditor';
+import RichText from '@components/layout/RichText';
 import ImageUpload from '@components/layout/ImageUpload';
 import SubmitButton from '@components/layout/SubmitButton';
 
@@ -123,11 +123,9 @@ export default function PropertyForm({
 
       <div className={styles.description}>
         <label>Property description</label>
-        <TextEditor value={description} setValue={setDescription} />
+        <RichText value={description} setValue={setDescription} />
       </div>
 
-      {/* @ts-ignore */}
-      <ImageUpload file={file} image={image} setState={setProperty} />
       <SubmitButton buttonText={buttonText} handleSubmit={handleSubmit} />
     </>
   );

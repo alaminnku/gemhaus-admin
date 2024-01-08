@@ -10,11 +10,10 @@ import { fetchInstance } from '@utils/index';
 export default function AddArticle() {
   const [article, setArticle] = useState<Article>({
     title: '',
-    slug: '',
     image: '',
     file: undefined,
   });
-  const { title, slug, image, file } = article;
+  const { title, image, file } = article;
   const [content, setContent] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -22,7 +21,6 @@ export default function AddArticle() {
   async function handleSubmit() {
     const data = new FormData();
     data.append('title', title);
-    data.append('slug', slug);
     data.append('file', file as File);
     data.append('content', content);
 

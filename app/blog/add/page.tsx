@@ -1,6 +1,6 @@
 import AddArticle from '@components/blog/AddArticle';
 
-export default function page() {
+export default function AddBlogPage() {
   return (
     <main>
       <AddArticle />

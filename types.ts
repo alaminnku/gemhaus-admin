@@ -1,8 +1,9 @@
 export type Article = {
+  _id?: string;
   title: string;
-  slug: string;
   image: string;
   file: File | undefined;
+  createdAt?: string;
 };
 
 export type Property = {

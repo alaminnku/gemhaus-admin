@@ -1,7 +1,7 @@
 import styles from './ArticleForm.module.css';
 import { ChangeEvent, Dispatch, SetStateAction } from 'react';
 import { Article } from 'types';
-import TextEditor from '@components/layout/TextEditor';
+import RichText from '@components/layout/RichText';
 import ImageUpload from '@components/layout/ImageUpload';
 import SubmitButton from '@components/layout/SubmitButton';
 
@@ -24,7 +24,7 @@ export default function ArticleForm({
   setContent,
   handleSubmit,
 }: Props) {
-  const { title, slug, image, file } = article;
+  const { title, image, file } = article;
 
   function handleArticleChange(e: ChangeEvent<HTMLInputElement>) {
     setArticle((prevState) => ({
@@ -32,8 +32,6 @@ export default function ArticleForm({
       [e.target.id]: e.target.value,
     }));
   }
-
-  function hello() {}
 
   return (
     <>
@@ -49,7 +47,7 @@ export default function ArticleForm({
         />
       </div>
 
-      <div className={styles.slug}>
+      {/* <div className={styles.slug}>
         <label htmlFor='slug'>Article slug</label>
         <input
           type='text'
@@ -58,14 +56,13 @@ export default function ArticleForm({
           onChange={handleArticleChange}
           placeholder='Enter your article slug'
         />
-      </div>
+      </div> */}
 
       <div className={styles.content}>
         <label>Article content</label>
-        <TextEditor value={content} setValue={setContent} />
+        <RichText value={content} setValue={setContent} />
       </div>
 
-      {/* @ts-ignore */}
       <ImageUpload file={file} image={image} setState={setArticle} />
       <SubmitButton buttonText={buttonText} handleSubmit={handleSubmit} />
     </>

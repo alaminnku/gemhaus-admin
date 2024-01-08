@@ -7,25 +7,22 @@ import Error from '@components/layout/Error';
 
 export default async function ArticleCards() {
   const { data, error } = await fetchInstance('/articles', {
-    cache: 'no-cache',
     next: { tags: ['articles'] },
   });
   const articles: Article[] = data;
 
   return (
     <section className={styles.container}>
+      <ActionButton href='/blog/add' text='+ Add Article' />
+
       {error ? (
         <Error error={error} />
       ) : (
-        <>
-          <ActionButton href='/blog/create' text='+ Add Article' />
-
-          <div className={styles.article_cards}>
-            {articles.map((article, index) => (
-              <ArticleCard key={index} article={article} />
-            ))}
-          </div>
-        </>
+        <div className={styles.article_cards}>
+          {articles.map((article, index) => (
+            <ArticleCard key={index} article={article} />
+          ))}
+        </div>
       )}
     </section>
   );

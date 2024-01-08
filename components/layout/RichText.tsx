@@ -15,7 +15,7 @@ type Props = {
   setValue: Dispatch<SetStateAction<string>>;
 };
 
-export default function TextEditor({ value, setValue }: Props) {
+export default function RichText({ value, setValue }: Props) {
   return (
     <ReactQuill
       theme='snow'
