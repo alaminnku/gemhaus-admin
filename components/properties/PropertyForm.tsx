@@ -4,8 +4,8 @@ import { ChangeEvent, Dispatch, SetStateAction } from 'react';
 import { Property } from 'types';
 import styles from './PropertyForm.module.css';
 import RichText from '@components/layout/RichText';
-import ImageUpload from '@components/layout/ImageUpload';
 import SubmitButton from '@components/layout/SubmitButton';
+import MultipleImageUpload from '@components/layout/MultipleImageUpload';
 
 type Props = {
   property: Property;
@@ -26,8 +26,17 @@ export default function PropertyForm({
   description,
   setDescription,
 }: Props) {
-  const { name, price, image, beds, baths, guests, rating, file, isFeatured } =
-    property;
+  const {
+    name,
+    price,
+    images,
+    beds,
+    baths,
+    guests,
+    rating,
+    files,
+    isFeatured,
+  } = property;
 
   function handlePropertyChange(e: ChangeEvent<HTMLInputElement>) {
     setProperty((prevState) => ({
@@ -126,6 +135,11 @@ export default function PropertyForm({
         <RichText value={description} setValue={setDescription} />
       </div>
 
+      <MultipleImageUpload
+        images={images}
+        files={files}
+        setState={setProperty}
+      />
       <SubmitButton buttonText={buttonText} handleSubmit={handleSubmit} />
     </>
   );

@@ -2,7 +2,7 @@ import styles from './ArticleForm.module.css';
 import { ChangeEvent, Dispatch, SetStateAction } from 'react';
 import { Article } from 'types';
 import RichText from '@components/layout/RichText';
-import ImageUpload from '@components/layout/ImageUpload';
+import SingleImageUpload from '@components/layout/SingleImageUpload';
 import SubmitButton from '@components/layout/SubmitButton';
 
 type Props = {
@@ -47,23 +47,12 @@ export default function ArticleForm({
         />
       </div>
 
-      {/* <div className={styles.slug}>
-        <label htmlFor='slug'>Article slug</label>
-        <input
-          type='text'
-          id='slug'
-          value={slug}
-          onChange={handleArticleChange}
-          placeholder='Enter your article slug'
-        />
-      </div> */}
-
       <div className={styles.content}>
         <label>Article content</label>
         <RichText value={content} setValue={setContent} />
       </div>
 
-      <ImageUpload file={file} image={image} setState={setArticle} />
+      <SingleImageUpload file={file} image={image} setState={setArticle} />
       <SubmitButton buttonText={buttonText} handleSubmit={handleSubmit} />
     </>
   );

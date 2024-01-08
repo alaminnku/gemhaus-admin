@@ -1,8 +1,8 @@
 import React, { Dispatch, SetStateAction, useRef } from 'react';
 import { FiUpload } from 'react-icons/fi';
-import styles from './ImageUpload.module.css';
+import styles from './SingleImageUpload.module.css';
 import { formatUploadImageName } from '@utils/index';
-import { Article, Property } from 'types';
+import { Article } from 'types';
 import Image from 'next/image';
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
   setState: Dispatch<SetStateAction<Article>>;
 };
 
-export default function ImageUpload({ file, image, setState }: Props) {
+export default function SingleImageUpload({ file, image, setState }: Props) {
   const imageRef = useRef<HTMLDivElement>(null);
 
   return (

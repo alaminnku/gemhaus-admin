@@ -9,12 +9,12 @@ export type Article = {
 export type Property = {
   name: string;
   price: string;
-  image: string;
+  images: string[];
   beds: string;
   baths: string;
   guests: string;
   rating: string;
   type: string;
   isFeatured: boolean;
-  file: File | undefined;
+  files: FileList | null;
 };
