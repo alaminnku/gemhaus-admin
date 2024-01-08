@@ -13,7 +13,7 @@ export default function AddArticle() {
     image: '',
     file: undefined,
   });
-  const { title, image, file } = article;
+  const { title, file } = article;
   const [content, setContent] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
