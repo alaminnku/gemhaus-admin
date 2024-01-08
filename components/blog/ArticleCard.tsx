@@ -3,6 +3,7 @@ import Image from 'next/image';
 import property from '@public/property.jpg';
 import { Article } from 'types';
 import Link from 'next/link';
+import { dateToText } from '@utils/index';
 
 type Props = {
   article: Article;
@@ -14,7 +15,9 @@ export default function ArticleCard({ article }: Props) {
       <Image src={property} alt='Blog thumbnail' />
 
       <div className={styles.content}>
-        <p className={styles.published}>Posted on: November 8, 2023</p>
+        <p className={styles.published}>
+          Posted on: {dateToText(article.createdAt)}
+        </p>
         <p>{article.title}</p>
       </div>
     </Link>
