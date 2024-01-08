@@ -1,6 +1,7 @@
 import Error from '@components/layout/Error';
 import { fetchInstance } from '@utils/index';
 import styles from './Article.module.css';
+import Image from 'next/image';
 
 export default async function Article({ id }: { id: string }) {
   const { data, error } = await fetchInstance(`/articles/${id}`);
@@ -11,6 +12,7 @@ export default async function Article({ id }: { id: string }) {
         <Error error={error} />
       ) : (
         <>
+          <Image src={data.image} alt={data.title} width={800} height={450} />
           <h1>{data.title}</h1>
           <div
             className={styles.content}
