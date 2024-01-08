@@ -1,7 +1,7 @@
 import ActionButton from '@components/layout/ActionButton';
 import React from 'react';
 import ArticleCards from './ArticleCards';
-import { fetchInstance } from '@utils/utils';
+import { fetchInstance } from '@lib/utils';
 import Error from '@components/layout/Error';
 import styles from './Articles.module.css';
 

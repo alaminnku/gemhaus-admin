@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import PropertyForm from './PropertyForm';
 import { Property } from 'types';
 import styles from './AddProperty.module.css';
-import { fetchInstance } from '@utils/utils';
+import { fetchInstance } from '@lib/utils';
 import revalidate from 'lib/revalidate';
 import { useRouter } from 'next/navigation';
 
@@ -18,13 +18,12 @@ export default function AddProperty() {
     baths: '',
     guests: '',
     rating: '',
-    type: '',
     files: null,
     isFeatured: false,
   });
   const [description, setDescription] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const { name, price, beds, baths, guests, rating, type, isFeatured, files } =
+  const { name, price, beds, baths, guests, rating, isFeatured, files } =
     property;
 
   async function handleSubmit() {
@@ -35,7 +34,6 @@ export default function AddProperty() {
     data.append('baths', baths);
     data.append('guests', guests);
     data.append('rating', rating);
-    data.append('type', type);
     data.append('description', description);
     data.append('isFeatured', String(isFeatured));
     if (files) {

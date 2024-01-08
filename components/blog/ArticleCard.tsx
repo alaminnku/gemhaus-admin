@@ -2,7 +2,7 @@ import styles from '@components/blog/ArticleCard.module.css';
 import Image from 'next/image';
 import { Article } from 'types';
 import Link from 'next/link';
-import { dateToText } from '@utils/utils';
+import { dateToText } from '@lib/utils';
 
 type Props = {
   article: Article;

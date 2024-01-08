@@ -1,7 +1,7 @@
 import ActionButton from '@components/layout/ActionButton';
 import styles from './Properties.module.css';
 import PropertyCards from './PropertyCards';
-import { fetchInstance } from '@utils/utils';
+import { fetchInstance } from '@lib/utils';
 import Error from '@components/layout/Error';
 
 export default async function Properties() {

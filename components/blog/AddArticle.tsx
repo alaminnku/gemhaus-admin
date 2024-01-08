@@ -5,7 +5,7 @@ import ArticleForm from './ArticleForm';
 import { Article } from 'types';
 import styles from './AddArticle.module.css';
 import revalidate from 'lib/revalidate';
-import { fetchInstance } from '@utils/utils';
+import { fetchInstance } from '@lib/utils';
 import { useRouter } from 'next/navigation';
 
 export default function AddArticle() {
