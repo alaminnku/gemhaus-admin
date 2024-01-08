@@ -1,3 +1,7 @@
+.container {
+  color: var(--black);
+}
+
 .image_and_icons {
   position: relative;
   margin-bottom: 1rem;
