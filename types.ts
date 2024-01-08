@@ -15,7 +15,6 @@ export type Property = {
   baths: string;
   guests: string;
   rating: string;
-  type: string;
   description?: string;
   isFeatured: boolean;
   files: FileList | null;

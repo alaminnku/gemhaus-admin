@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 import PropertyForm from './PropertyForm';
 import { Property } from 'types';
 import styles from './AddProperty.module.css';
-import { fetchInstance } from '@utils/index';
-import revalidate from '@utils/revalidate';
+import { fetchInstance } from '@utils/utils';
+import revalidate from 'lib/revalidate';
 import { useRouter } from 'next/navigation';
 
 export default function AddProperty() {

@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 import ArticleForm from './ArticleForm';
 import { Article } from 'types';
 import styles from './AddArticle.module.css';
-import revalidate from '@utils/revalidate';
-import { fetchInstance } from '@utils/index';
+import revalidate from 'lib/revalidate';
+import { fetchInstance } from '@utils/utils';
 import { useRouter } from 'next/navigation';
 
 export default function AddArticle() {

@@ -22,7 +22,7 @@
     "paths": {
       "@components/*": ["components/*"],
       "@public/*": ["public/*"],
-      "@utils/*": ["utils/*"],
+      "@utils/*": ["lib/*"],
       "@context/*": ["context/*"],
       "@data/*": ["data/*"]
     }

@@ -43,7 +43,7 @@ export default function PropertyCard({ property }: Props) {
         <h3>{name}</h3>
 
         <p>
-          <span>From {price}</span> Per Night
+          <span>From ${price}</span> Per Night
         </p>
       </div>
     </Link>

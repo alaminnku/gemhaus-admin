@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useRef } from 'react';
 import { FiUpload } from 'react-icons/fi';
 import styles from './SingleImageUpload.module.css';
-import { formatUploadImageName } from '@utils/index';
+import { formatUploadImageName } from '@utils/utils';
 import { Article } from 'types';
 import Image from 'next/image';
 

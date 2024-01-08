@@ -1,5 +1,5 @@
 import Error from '@components/layout/Error';
-import { fetchInstance } from '@utils/index';
+import { fetchInstance } from '@utils/utils';
 import styles from './Article.module.css';
 import Image from 'next/image';
 

@@ -1,11 +1,9 @@
 import Error from '@components/layout/Error';
-import { fetchInstance } from '@utils/index';
+import { fetchInstance } from '@utils/utils';
 import styles from './Property.module.css';
 
 export default async function Property({ id }: { id: string }) {
-  const { data, error } = await fetchInstance(`/properties/${id}`, {
-    cache: 'no-cache',
-  });
+  const { data, error } = await fetchInstance(`/properties/${id}`);
 
   return (
     <section className={styles.container}>
