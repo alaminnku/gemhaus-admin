@@ -7,6 +7,7 @@ export type Article = {
 };
 
 export type Property = {
+  _id?: string;
   name: string;
   price: string;
   images: string[];
@@ -15,6 +16,7 @@ export type Property = {
   guests: string;
   rating: string;
   type: string;
+  description?: string;
   isFeatured: boolean;
   files: FileList | null;
 };

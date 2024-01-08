@@ -1,43 +1,51 @@
 import Image from 'next/image';
-import property from '@public/property.jpg';
 import styles from '@components/properties/PropertyCard.module.css';
 import { FaBath, FaBed, FaHeart, FaStar, FaUser } from 'react-icons/fa6';
+import { Property } from 'types';
+import Link from 'next/link';
 
-export default function PropertyCard() {
+type Props = {
+  property: Property;
+};
+
+export default function PropertyCard({ property }: Props) {
+  const { name, price, beds, baths, guests, rating, images, isFeatured } =
+    property;
   return (
-    <div className={styles.container}>
+    <Link href={`/properties/${property._id}`} className={styles.container}>
       <div className={styles.image_and_icons}>
-        <Image src={property} alt='Property image' />
+        <Image src={images[0]} alt='Property image' width={800} height={450} />
 
-        <div className={styles.featured}>
-          <p>Featured</p>
-          <FaHeart />
-        </div>
+        {isFeatured && (
+          <div className={styles.featured}>
+            <p>Featured</p>
+            <FaHeart />
+          </div>
+        )}
 
         <div className={styles.details}>
           <div>
-            <FaBed /> 4
+            <FaBed /> {beds}
           </div>
           <div>
-            <FaBath /> 2
+            <FaBath /> {baths}
           </div>
           <div>
-            <FaUser /> 14
+            <FaUser /> {guests}
           </div>
           <div>
-            <FaStar /> 4.9
+            <FaStar /> {rating}
           </div>
         </div>
       </div>
 
       <div className={styles.content}>
-        <h3>The Donkey House</h3>
-        <p>Professional Host</p>
-        <p>18-23 Dec</p>
+        <h3>{name}</h3>
+
         <p>
-          <span>From $1,500</span> Per Night
+          <span>From {price}</span> Per Night
         </p>
       </div>
-    </div>
+    </Link>
   );
 }

@@ -1,6 +1,5 @@
 .container {
-  display: flex;
+  display: grid;
   gap: 2rem;
-  margin-bottom: 3rem;
-  justify-content: space-between;
+  grid-template-columns: repeat(3, 1fr);
 }

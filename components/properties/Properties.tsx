@@ -1,12 +1,20 @@
 import ActionButton from '@components/layout/ActionButton';
 import styles from './Properties.module.css';
 import PropertyCards from './PropertyCards';
+import { fetchInstance } from '@utils/index';
+import Error from '@components/layout/Error';
 
-export default function Properties() {
+export default async function Properties() {
+  const { data, error } = await fetchInstance('/properties', {
+    next: {
+      tags: ['properties'],
+    },
+  });
+
   return (
     <section className={styles.container}>
-      <ActionButton href='/properties/create' text='+ Add Property' />
-      <PropertyCards />
+      <ActionButton href='/properties/add' text='+ Add Property' />
+      {error ? <Error error={error} /> : <PropertyCards properties={data} />}
     </section>
   );
 }

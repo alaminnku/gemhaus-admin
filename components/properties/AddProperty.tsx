@@ -5,6 +5,7 @@ import PropertyForm from './PropertyForm';
 import { Property } from 'types';
 import styles from './AddProperty.module.css';
 import { fetchInstance } from '@utils/index';
+import revalidate from '@utils/revalidate';
 
 export default function AddProperty() {
   const [property, setProperty] = useState<Property>({
@@ -16,8 +17,8 @@ export default function AddProperty() {
     guests: '',
     rating: '',
     type: '',
-    isFeatured: false,
     files: null,
+    isFeatured: false,
   });
   const [description, setDescription] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -42,6 +43,7 @@ export default function AddProperty() {
     }
 
     await fetchInstance('/properties', { method: 'POST', body: data });
+    revalidate('properties');
   }
 
   return (
