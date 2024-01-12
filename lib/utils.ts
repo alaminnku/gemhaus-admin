@@ -1,4 +1,9 @@
-type FetchOptions = {
+type GetDataOptions = {
+  cache?: 'no-cache';
+  next?: { tags: [string] };
+};
+
+type MutateDataOptions = {
   cache?: 'no-cache';
   body?: string | FormData;
   next?: { tags: [string] };
@@ -11,8 +16,8 @@ export const formatUploadImageName = (name: string) =>
     ? `${name.slice(0, 10)}.${name.split('.')[name.split('.').length - 1]}`
     : name;
 
-// Fetch instance
-export async function fetchInstance(path: string, options?: FetchOptions) {
+// Get data
+export async function getData(path: string, options?: GetDataOptions) {
   let data;
   let error;
 
@@ -27,7 +32,22 @@ export async function fetchInstance(path: string, options?: FetchOptions) {
   } else {
     data = result;
   }
+
   return { data, error };
+}
+
+// Mutate data
+export async function mutateData(path: string, options?: MutateDataOptions) {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${path}`, {
+    ...options,
+    credentials: 'include',
+  });
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+  return data;
 }
 
 // Convert date to text

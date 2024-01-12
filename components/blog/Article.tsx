@@ -1,10 +1,10 @@
 import Error from '@components/layout/Error';
-import { fetchInstance } from '@lib/utils';
+import { getData } from '@lib/utils';
 import styles from './Article.module.css';
 import Image from 'next/image';
 
 export default async function Article({ id }: { id: string }) {
-  const { data, error } = await fetchInstance(`/articles/${id}`);
+  const { data, error } = await getData(`/articles/${id}`);
 
   return (
     <section className={styles.container}>

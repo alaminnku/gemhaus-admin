@@ -53,7 +53,11 @@ export default function ArticleForm({
       </div>
 
       <SingleImageUpload file={file} image={image} setState={setArticle} />
-      <SubmitButton buttonText={buttonText} handleSubmit={handleSubmit} />
+      <SubmitButton
+        buttonText={buttonText}
+        isLoading={isLoading}
+        handleSubmit={handleSubmit}
+      />
     </>
   );
 }

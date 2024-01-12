@@ -140,7 +140,11 @@ export default function PropertyForm({
         files={files}
         setState={setProperty}
       />
-      <SubmitButton buttonText={buttonText} handleSubmit={handleSubmit} />
+      <SubmitButton
+        buttonText={buttonText}
+        isLoading={isLoading}
+        handleSubmit={handleSubmit}
+      />
     </>
   );
 }

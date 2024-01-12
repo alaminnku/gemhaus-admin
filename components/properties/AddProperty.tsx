@@ -2,9 +2,9 @@
 
 import React, { useState } from 'react';
 import PropertyForm from './PropertyForm';
-import { Property } from 'types';
+import { ServerError, Property } from 'types';
 import styles from './AddProperty.module.css';
-import { fetchInstance } from '@lib/utils';
+import { mutateData } from '@lib/utils';
 import revalidate from 'lib/revalidate';
 import { useRouter } from 'next/navigation';
 
@@ -42,9 +42,17 @@ export default function AddProperty() {
       }
     }
 
-    await fetchInstance('/properties', { method: 'POST', body: data });
-    revalidate('properties');
-    router.push('/properties');
+    try {
+      setIsLoading(true);
+      await mutateData('/properties', { method: 'POST', body: data });
+
+      revalidate('properties');
+      router.push('/properties');
+    } catch (err) {
+      console.log(err as ServerError);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (

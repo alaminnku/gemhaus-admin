@@ -19,3 +19,7 @@ export type Property = {
   isFeatured: boolean;
   files: FileList | null;
 };
+
+export type ServerError = {
+  message: string;
+};

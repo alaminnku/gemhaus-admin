@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react';
 import ArticleForm from './ArticleForm';
-import { Article } from 'types';
+import { Article, ServerError } from 'types';
 import styles from './AddArticle.module.css';
 import revalidate from 'lib/revalidate';
-import { fetchInstance } from '@lib/utils';
+import { mutateData } from '@lib/utils';
 import { useRouter } from 'next/navigation';
 
 export default function AddArticle() {
@@ -27,11 +27,15 @@ export default function AddArticle() {
     data.append('content', content);
 
     try {
-      await fetchInstance('/articles', { method: 'POST', body: data });
+      setIsLoading(true);
+      await mutateData('/articles', { method: 'POST', body: data });
+
       revalidate('articles');
       router.push('/blog');
     } catch (err) {
-      console.log(err);
+      console.log(err as ServerError);
+    } finally {
+      setIsLoading(false);
     }
   }
 
