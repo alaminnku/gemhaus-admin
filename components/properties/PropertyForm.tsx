@@ -132,34 +132,34 @@ export default function PropertyForm({
         </div>
 
         <div className={styles.item}>
-          <label htmlFor='serviceFee'>Service fee</label>
+          <label htmlFor='serviceFee'>Service fee (%)</label>
           <input
             id='serviceFee'
             type='text'
             value={serviceFee}
-            placeholder='Enter service fee'
+            placeholder='Enter service fee percentage'
             onChange={handlePropertyChange}
           />
         </div>
 
         <div className={styles.item}>
-          <label htmlFor='salesTax'>Sales tax</label>
+          <label htmlFor='salesTax'>Sales tax (%)</label>
           <input
             id='salesTax'
             type='text'
             value={salesTax}
-            placeholder='Enter sales tax'
+            placeholder='Enter sales tax percentage'
             onChange={handlePropertyChange}
           />
         </div>
 
         <div className={styles.item}>
-          <label htmlFor='lodgingTax'>Lodging tax</label>
+          <label htmlFor='lodgingTax'>Lodging tax (%)</label>
           <input
             id='lodgingTax'
             type='text'
             value={lodgingTax}
-            placeholder='Enter lodging tax'
+            placeholder='Enter lodging tax percentage'
             onChange={handlePropertyChange}
           />
         </div>
