@@ -35,6 +35,12 @@ export default function PropertyForm({
     guests,
     rating,
     files,
+    hostawayId,
+    serviceFee,
+    salesTax,
+    lodgingTax,
+    insuranceFee,
+    cleaningFee,
     isFeatured,
   } = property;
 
@@ -48,7 +54,18 @@ export default function PropertyForm({
   return (
     <>
       <div className={styles.items}>
-        <div className={styles.name}>
+        <div className={styles.item}>
+          <label htmlFor='hostawayId'>Hostaway Id</label>
+          <input
+            id='hostawayId'
+            type='text'
+            value={hostawayId}
+            placeholder='Enter Hostaway id'
+            onChange={handlePropertyChange}
+          />
+        </div>
+
+        <div className={styles.item}>
           <label htmlFor='name'>Property name</label>
           <input
             id='name'
@@ -59,7 +76,7 @@ export default function PropertyForm({
           />
         </div>
 
-        <div className={styles.price}>
+        <div className={styles.item}>
           <label htmlFor='price'>Property price</label>
           <input
             id='price'
@@ -70,7 +87,7 @@ export default function PropertyForm({
           />
         </div>
 
-        <div className={styles.beds}>
+        <div className={styles.item}>
           <label htmlFor='beds'>Number of beds</label>
           <input
             id='beds'
@@ -81,7 +98,7 @@ export default function PropertyForm({
           />
         </div>
 
-        <div className={styles.baths}>
+        <div className={styles.item}>
           <label htmlFor='baths'>Number of baths</label>
           <input
             id='baths'
@@ -92,7 +109,7 @@ export default function PropertyForm({
           />
         </div>
 
-        <div className={styles.guests}>
+        <div className={styles.item}>
           <label htmlFor='guests'>Number of guests</label>
           <input
             id='guests'
@@ -103,13 +120,68 @@ export default function PropertyForm({
           />
         </div>
 
-        <div className={styles.rating}>
+        <div className={styles.item}>
           <label htmlFor='ratings'>Property rating</label>
           <input
             id='rating'
             type='text'
             value={rating}
             placeholder='Enter property rating'
+            onChange={handlePropertyChange}
+          />
+        </div>
+
+        <div className={styles.item}>
+          <label htmlFor='serviceFee'>Service fee</label>
+          <input
+            id='serviceFee'
+            type='text'
+            value={serviceFee}
+            placeholder='Enter service fee'
+            onChange={handlePropertyChange}
+          />
+        </div>
+
+        <div className={styles.item}>
+          <label htmlFor='salesTax'>Sales tax</label>
+          <input
+            id='salesTax'
+            type='text'
+            value={salesTax}
+            placeholder='Enter sales tax'
+            onChange={handlePropertyChange}
+          />
+        </div>
+
+        <div className={styles.item}>
+          <label htmlFor='lodgingTax'>Lodging tax</label>
+          <input
+            id='lodgingTax'
+            type='text'
+            value={lodgingTax}
+            placeholder='Enter lodging tax'
+            onChange={handlePropertyChange}
+          />
+        </div>
+
+        <div className={styles.item}>
+          <label htmlFor='insuranceFee'>Insurance fee</label>
+          <input
+            id='insuranceFee'
+            type='text'
+            value={insuranceFee}
+            placeholder='Enter insurance fee'
+            onChange={handlePropertyChange}
+          />
+        </div>
+
+        <div className={styles.item}>
+          <label htmlFor='cleaningFee'>Cleaning fee</label>
+          <input
+            id='cleaningFee'
+            type='text'
+            value={cleaningFee}
+            placeholder='Enter cleaning fee'
             onChange={handlePropertyChange}
           />
         </div>

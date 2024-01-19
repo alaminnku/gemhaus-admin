@@ -8,6 +8,7 @@ export type Article = {
 
 export type Property = {
   _id?: string;
+  hostawayId: string;
   name: string;
   price: string;
   images: string[];
@@ -17,6 +18,11 @@ export type Property = {
   rating: string;
   description?: string;
   isFeatured: boolean;
+  cleaningFee: string;
+  insuranceFee: string;
+  lodgingTax: string;
+  salesTax: string;
+  serviceFee: string;
   files: FileList | null;
 };
 
