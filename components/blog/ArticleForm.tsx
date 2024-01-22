@@ -6,43 +6,29 @@ import SingleImageUpload from '@components/layout/SingleImageUpload';
 import SubmitButton from '@components/layout/SubmitButton';
 
 type Props = {
-  article: Article;
+  article?: Article;
   content: string;
-  isLoading: boolean;
   buttonText: string;
-  setArticle: Dispatch<SetStateAction<Article>>;
   setContent: Dispatch<SetStateAction<string>>;
-  handleSubmit: () => Promise<void>;
+  handleSubmit: (formData: FormData) => Promise<void>;
 };
 
 export default function ArticleForm({
   article,
   content,
-  isLoading,
   buttonText,
-  setArticle,
   setContent,
   handleSubmit,
 }: Props) {
-  const { title, image, file } = article;
-
-  function handleArticleChange(e: ChangeEvent<HTMLInputElement>) {
-    setArticle((prevState) => ({
-      ...prevState,
-      [e.target.id]: e.target.value,
-    }));
-  }
-
   return (
-    <>
+    <form action={handleSubmit}>
       <div className={styles.title}>
         <label htmlFor='title'>Article title</label>
         <input
           type='text'
           id='title'
           name='title'
-          value={title}
-          onChange={handleArticleChange}
+          defaultValue={article?.title}
           placeholder='Enter your article title'
         />
       </div>
@@ -52,12 +38,11 @@ export default function ArticleForm({
         <RichText value={content} setValue={setContent} />
       </div>
 
-      <SingleImageUpload file={file} image={image} setState={setArticle} />
-      <SubmitButton
-        buttonText={buttonText}
-        isLoading={isLoading}
-        handleSubmit={handleSubmit}
-      />
-    </>
+      <div className={styles.file}>
+        <input type='file' name='file' accept='image/*' />
+      </div>
+
+      <SubmitButton text={buttonText} />
+    </form>
   );
 }

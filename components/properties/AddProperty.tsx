@@ -15,7 +15,9 @@ export default function AddProperty() {
   async function handleSubmit(formData: FormData) {
     formData.append('description', description);
     try {
-      await mutateData('/properties', { method: 'POST', body: formData });
+      await mutateData.post('/properties', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
 
       revalidate('properties');
       router.push('/properties');
