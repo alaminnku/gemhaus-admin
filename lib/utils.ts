@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 type GetDataOptions = {
   cache?: 'no-cache';
   next?: { tags: [string] };
@@ -35,6 +37,12 @@ export async function getData(path: string, options?: GetDataOptions) {
 
   return { data, error };
 }
+
+// // Mutate data
+// export const mutateData = axios.create({
+//   withCredentials: true,
+//   baseURL: process.env.NEXT_PUBLIC_API_URL,
+// });
 
 // Mutate data
 export async function mutateData(path: string, options?: MutateDataOptions) {

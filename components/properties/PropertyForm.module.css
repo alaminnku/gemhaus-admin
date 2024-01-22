@@ -5,11 +5,13 @@
 }
 
 .isFeatured,
-.description {
+.description,
+.files {
   margin-bottom: 2rem;
 }
 
-.item label {
+.item label,
+.description label {
   display: inline-block;
   margin-bottom: 0.25rem;
 }

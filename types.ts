@@ -16,14 +16,14 @@ export type Property = {
   baths: string;
   guests: string;
   rating: string;
-  description?: string;
+  description: string;
+  files: FileList | null;
   isFeatured: boolean;
   cleaningFee: string;
   insuranceFee: string;
-  lodgingTax: string;
-  salesTax: string;
-  serviceFee: string;
-  files: FileList | null;
+  lodgingTaxPercent: string;
+  salesTaxPercent: string;
+  serviceFeePercent: string;
 };
 
 export type ServerError = {

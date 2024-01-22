@@ -1,67 +1,37 @@
 'use client';
 
-import { ChangeEvent, Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import { Property } from 'types';
 import styles from './PropertyForm.module.css';
 import RichText from '@components/layout/RichText';
 import SubmitButton from '@components/layout/SubmitButton';
-import MultipleImageUpload from '@components/layout/MultipleImageUpload';
 
 type Props = {
-  property: Property;
-  isLoading: boolean;
+  property?: Property;
   buttonText: string;
   description: string;
-  handleSubmit: () => Promise<void>;
+  handleSubmit: (formData: FormData) => Promise<void>;
   setDescription: Dispatch<SetStateAction<string>>;
-  setProperty: Dispatch<SetStateAction<Property>>;
 };
 
 export default function PropertyForm({
   property,
-  isLoading,
   buttonText,
-  handleSubmit,
-  setProperty,
   description,
   setDescription,
+  handleSubmit,
 }: Props) {
-  const {
-    name,
-    price,
-    images,
-    beds,
-    baths,
-    guests,
-    rating,
-    files,
-    hostawayId,
-    serviceFee,
-    salesTax,
-    lodgingTax,
-    insuranceFee,
-    cleaningFee,
-    isFeatured,
-  } = property;
-
-  function handlePropertyChange(e: ChangeEvent<HTMLInputElement>) {
-    setProperty((prevState) => ({
-      ...prevState,
-      [e.target.id]: e.target.value,
-    }));
-  }
-
   return (
-    <>
+    <form action={handleSubmit}>
       <div className={styles.items}>
         <div className={styles.item}>
           <label htmlFor='hostawayId'>Hostaway Id</label>
           <input
             id='hostawayId'
-            type='text'
-            value={hostawayId}
+            name='hostawayId'
+            type='number'
+            defaultValue={property?.hostawayId}
             placeholder='Enter Hostaway id'
-            onChange={handlePropertyChange}
           />
         </div>
 
@@ -69,10 +39,10 @@ export default function PropertyForm({
           <label htmlFor='name'>Property name</label>
           <input
             id='name'
+            name='name'
             type='text'
-            value={name}
+            defaultValue={property?.name}
             placeholder='Enter property name'
-            onChange={handlePropertyChange}
           />
         </div>
 
@@ -80,10 +50,10 @@ export default function PropertyForm({
           <label htmlFor='price'>Property price</label>
           <input
             id='price'
-            type='text'
-            value={price}
+            name='price'
+            type='number'
+            defaultValue={property?.price}
             placeholder='Enter property price'
-            onChange={handlePropertyChange}
           />
         </div>
 
@@ -91,10 +61,10 @@ export default function PropertyForm({
           <label htmlFor='beds'>Number of beds</label>
           <input
             id='beds'
-            type='text'
-            value={beds}
+            name='beds'
+            type='number'
+            defaultValue={property?.beds}
             placeholder='Enter number of beds'
-            onChange={handlePropertyChange}
           />
         </div>
 
@@ -102,10 +72,10 @@ export default function PropertyForm({
           <label htmlFor='baths'>Number of baths</label>
           <input
             id='baths'
-            type='text'
-            value={baths}
+            name='baths'
+            type='number'
+            defaultValue={property?.baths}
             placeholder='Enter number of baths'
-            onChange={handlePropertyChange}
           />
         </div>
 
@@ -113,10 +83,10 @@ export default function PropertyForm({
           <label htmlFor='guests'>Number of guests</label>
           <input
             id='guests'
-            type='text'
-            value={guests}
+            name='guests'
+            type='number'
+            defaultValue={property?.guests}
             placeholder='Enter number of guests'
-            onChange={handlePropertyChange}
           />
         </div>
 
@@ -124,43 +94,47 @@ export default function PropertyForm({
           <label htmlFor='ratings'>Property rating</label>
           <input
             id='rating'
-            type='text'
-            value={rating}
+            name='rating'
+            type='number'
+            step='0.01'
+            defaultValue={property?.rating}
             placeholder='Enter property rating'
-            onChange={handlePropertyChange}
           />
         </div>
 
         <div className={styles.item}>
-          <label htmlFor='serviceFee'>Service fee (%)</label>
+          <label htmlFor='serviceFeePercent'>Service fee (%)</label>
           <input
-            id='serviceFee'
-            type='text'
-            value={serviceFee}
+            id='serviceFeePercent'
+            name='serviceFeePercent'
+            type='number'
+            step='0.01'
+            defaultValue={property?.serviceFeePercent}
             placeholder='Enter service fee percentage'
-            onChange={handlePropertyChange}
           />
         </div>
 
         <div className={styles.item}>
-          <label htmlFor='salesTax'>Sales tax (%)</label>
+          <label htmlFor='salesTaxPercent'>Sales tax (%)</label>
           <input
-            id='salesTax'
-            type='text'
-            value={salesTax}
+            id='salesTaxPercent'
+            name='salesTaxPercent'
+            type='number'
+            step='0.01'
+            defaultValue={property?.salesTaxPercent}
             placeholder='Enter sales tax percentage'
-            onChange={handlePropertyChange}
           />
         </div>
 
         <div className={styles.item}>
-          <label htmlFor='lodgingTax'>Lodging tax (%)</label>
+          <label htmlFor='lodgingTaxPercent'>Lodging tax (%)</label>
           <input
-            id='lodgingTax'
-            type='text'
-            value={lodgingTax}
+            id='lodgingTaxPercent'
+            name='lodgingTaxPercent'
+            type='number'
+            step='0.01'
+            defaultValue={property?.lodgingTaxPercent}
             placeholder='Enter lodging tax percentage'
-            onChange={handlePropertyChange}
           />
         </div>
 
@@ -168,10 +142,10 @@ export default function PropertyForm({
           <label htmlFor='insuranceFee'>Insurance fee</label>
           <input
             id='insuranceFee'
-            type='text'
-            value={insuranceFee}
+            name='insuranceFee'
+            type='number'
+            defaultValue={property?.insuranceFee}
             placeholder='Enter insurance fee'
-            onChange={handlePropertyChange}
           />
         </div>
 
@@ -179,26 +153,16 @@ export default function PropertyForm({
           <label htmlFor='cleaningFee'>Cleaning fee</label>
           <input
             id='cleaningFee'
-            type='text'
-            value={cleaningFee}
+            name='cleaningFee'
+            type='number'
+            defaultValue={property?.cleaningFee}
             placeholder='Enter cleaning fee'
-            onChange={handlePropertyChange}
           />
         </div>
 
         <div className={styles.isFeatured}>
           <label htmlFor='isFeatured'>Is this property featured?</label>
-          <input
-            type='checkbox'
-            id='isFeatured'
-            checked={isFeatured}
-            onChange={(e) =>
-              setProperty((prevState) => ({
-                ...prevState,
-                isFeatured: e.target.checked,
-              }))
-            }
-          />
+          <input type='checkbox' id='isFeatured' name='isFeatured' />
         </div>
       </div>
 
@@ -207,16 +171,11 @@ export default function PropertyForm({
         <RichText value={description} setValue={setDescription} />
       </div>
 
-      <MultipleImageUpload
-        images={images}
-        files={files}
-        setState={setProperty}
-      />
-      <SubmitButton
-        buttonText={buttonText}
-        isLoading={isLoading}
-        handleSubmit={handleSubmit}
-      />
-    </>
+      <div className={styles.files}>
+        <input multiple type='file' name='files' accept='image/*' />
+      </div>
+
+      <SubmitButton text={buttonText} />
+    </form>
   );
 }
