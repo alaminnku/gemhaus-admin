@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PropertyForm from './PropertyForm';
 import { ServerError } from 'types';
 import styles from './AddProperty.module.css';

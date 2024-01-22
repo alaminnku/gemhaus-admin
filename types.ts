@@ -1,13 +1,13 @@
 export type Article = {
-  _id?: string;
+  _id: string;
   title: string;
   image: string;
   file: File | undefined;
-  createdAt?: string;
+  createdAt: string;
 };
 
 export type Property = {
-  _id?: string;
+  _id: string;
   hostawayId: string;
   name: string;
   price: string;

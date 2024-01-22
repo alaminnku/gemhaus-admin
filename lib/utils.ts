@@ -5,13 +5,6 @@ type GetDataOptions = {
   next?: { tags: [string] };
 };
 
-// type MutateDataOptions = {
-//   cache?: 'no-cache';
-//   body?: string | FormData;
-//   next?: { tags: [string] };
-//   method?: 'POST' | 'PATCH' | 'DELETE';
-// };
-
 // Format long image name
 export const formatUploadImageName = (name: string) =>
   name.length > 15
@@ -43,20 +36,6 @@ export const mutateData = axios.create({
   withCredentials: true,
   baseURL: process.env.NEXT_PUBLIC_API_URL,
 });
-
-// // Mutate data
-// export async function mutateData(path: string, options?: MutateDataOptions) {
-//   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${path}`, {
-//     ...options,
-//     credentials: 'include',
-//   });
-//   const data = await response.json();
-
-//   if (!response.ok) {
-//     throw new Error(data.message);
-//   }
-//   return data;
-// }
 
 // Convert date to text
 export const dateToText = (input: Date | string | number | undefined) => {
