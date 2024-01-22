@@ -7,6 +7,7 @@ export default function Logo() {
   return (
     <Link href='/' className={styles.container}>
       <Image src={logo} alt='GemHaus logo' />
+      <p>GemHaus</p>
     </Link>
   );
 }
