@@ -1,9 +1,9 @@
 import Error from '@components/layout/Error';
-import { getData } from '@lib/utils';
+import { fetchGemhausData } from '@lib/utils';
 import styles from './Property.module.css';
 
 export default async function Property({ id }: { id: string }) {
-  const { data, error } = await getData(`/properties/${id}`);
+  const { data, error } = await fetchGemhausData(`/properties/${id}`);
 
   return (
     <section className={styles.container}>

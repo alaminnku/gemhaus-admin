@@ -1,12 +1,12 @@
 import LinkButton from '@components/layout/LinkButton';
 import React from 'react';
 import ArticleCards from './ArticleCards';
-import { getData } from '@lib/utils';
+import { fetchGemhausData } from '@lib/utils';
 import Error from '@components/layout/Error';
 import styles from './Articles.module.css';
 
 export default async function Articles() {
-  const { data, error } = await getData('/articles', {
+  const { data, error } = await fetchGemhausData('/articles', {
     next: { tags: ['articles'] },
   });
 

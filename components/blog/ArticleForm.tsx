@@ -1,8 +1,7 @@
 import styles from './ArticleForm.module.css';
-import { ChangeEvent, Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import { Article } from 'types';
 import RichText from '@components/layout/RichText';
-import SingleImageUpload from '@components/layout/SingleImageUpload';
 import SubmitButton from '@components/layout/SubmitButton';
 
 type Props = {

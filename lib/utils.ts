@@ -1,18 +1,14 @@
-import axios from 'axios';
-
-type GetDataOptions = {
-  cache?: 'no-cache';
-  next?: { tags: [string] };
+type FetchGemhausDataOptions = {
+  body?: FormData;
+  method?: 'POST' | 'DELETE';
+  next?: { revalidate: number };
 };
 
-// Format long image name
-export const formatUploadImageName = (name: string) =>
-  name.length > 15
-    ? `${name.slice(0, 10)}.${name.split('.')[name.split('.').length - 1]}`
-    : name;
-
-// Get data
-export async function getData(path: string, options?: GetDataOptions) {
+// Fetch Gemhaus data
+export async function fetchGemhausData(
+  path: string,
+  options?: FetchGemhausDataOptions
+) {
   let data;
   let error;
 
@@ -27,15 +23,8 @@ export async function getData(path: string, options?: GetDataOptions) {
   } else {
     data = result;
   }
-
   return { data, error };
 }
-
-// Mutate data
-export const mutateData = axios.create({
-  withCredentials: true,
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
-});
 
 // Convert date to text
 export const dateToText = (input: Date | string | number | undefined) => {

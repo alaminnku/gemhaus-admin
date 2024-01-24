@@ -2,9 +2,8 @@
 
 import { useState } from 'react';
 import PropertyForm from './PropertyForm';
-import { ServerError } from 'types';
 import styles from './AddProperty.module.css';
-import { mutateData } from '@lib/utils';
+import { fetchGemhausData } from '@lib/utils';
 import revalidate from 'lib/revalidate';
 import { useRouter } from 'next/navigation';
 
@@ -14,16 +13,15 @@ export default function AddProperty() {
 
   async function handleSubmit(formData: FormData) {
     formData.append('description', description);
-    try {
-      await mutateData.post('/properties', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
 
-      revalidate('properties');
-      router.push('/properties');
-    } catch (err) {
-      console.log(err as ServerError);
-    }
+    const { error } = await fetchGemhausData('/properties', {
+      method: 'POST',
+      body: formData,
+    });
+    if (error) return console.log(error);
+
+    revalidate('properties');
+    router.push('/properties');
   }
 
   return (
