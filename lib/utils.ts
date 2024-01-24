@@ -1,7 +1,7 @@
 type FetchGemhausDataOptions = {
   body?: FormData;
   method?: 'POST' | 'DELETE';
-  next?: { revalidate: number };
+  next?: { tags: string[] };
 };
 
 // Fetch Gemhaus data
