@@ -6,6 +6,8 @@ export type Article = {
   createdAt: string;
 };
 
+export type Offering = { name: string; icon: string };
+
 export type Property = {
   _id: string;
   hostawayId: string;
@@ -20,11 +22,11 @@ export type Property = {
   cleaningFee: string;
   insuranceFee: string;
   description: string;
+  offerings: Offering[];
   files: FileList | null;
   lodgingTaxPercent: string;
   salesTaxPercent: string;
   serviceFeePercent: string;
-  offerings: { name: string; icon: string }[];
 };
 
 export type ServerError = {

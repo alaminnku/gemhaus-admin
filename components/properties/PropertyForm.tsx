@@ -1,7 +1,7 @@
 'use client';
 
-import { Dispatch, SetStateAction } from 'react';
-import { Property } from 'types';
+import { ChangeEvent, Dispatch, SetStateAction } from 'react';
+import { Offering, Property } from 'types';
 import styles from './PropertyForm.module.css';
 import RichText from '@components/layout/RichText';
 import SubmitButton from '@components/layout/SubmitButton';
@@ -10,17 +10,30 @@ type Props = {
   property?: Property;
   buttonText: string;
   description: string;
+  offerings: Offering[];
   handleSubmit: (formData: FormData) => Promise<void>;
   setDescription: Dispatch<SetStateAction<string>>;
+  setSelectedOfferings: Dispatch<SetStateAction<string[]>>;
 };
 
 export default function PropertyForm({
   property,
+  offerings,
   buttonText,
   description,
   setDescription,
   handleSubmit,
+  setSelectedOfferings,
 }: Props) {
+  function handleOfferingsChange(e: ChangeEvent<HTMLInputElement>) {
+    const name = e.target.name;
+    setSelectedOfferings((prevState) =>
+      !e.target.checked && prevState.includes(name)
+        ? prevState.filter((offering) => offering !== name)
+        : [...prevState, name]
+    );
+  }
+
   return (
     <form action={handleSubmit}>
       <div className={styles.items}>
@@ -158,6 +171,26 @@ export default function PropertyForm({
             defaultValue={property?.cleaningFee}
             placeholder='Enter cleaning fee'
           />
+        </div>
+
+        <div className={styles.property_offerings}>
+          <p>Property offerings</p>
+          <div className={styles.offerings}>
+            {offerings.map((offering, index) => (
+              <div className={styles.offering} key={index}>
+                <input
+                  type='checkbox'
+                  name={offering.name}
+                  id={offering.name}
+                  checked={property?.offerings.some(
+                    (el) => el.name === offering.name
+                  )}
+                  onChange={handleOfferingsChange}
+                />
+                <label htmlFor={offering.name}>{offering.name}</label>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className={styles.isFeatured}>
