@@ -9,8 +9,16 @@ type Props = {
 };
 
 export default function PropertyCard({ property }: Props) {
-  const { name, price, beds, baths, guests, rating, images, isFeatured } =
-    property;
+  const {
+    name,
+    price,
+    bedrooms,
+    bathrooms,
+    guests,
+    rating,
+    images,
+    isFeatured,
+  } = property;
   return (
     <Link href={`/properties/${property._id}`} className={styles.container}>
       <div className={styles.image_and_icons}>
@@ -25,10 +33,10 @@ export default function PropertyCard({ property }: Props) {
 
         <div className={styles.details}>
           <div>
-            <FaBed /> {beds}
+            <FaBed /> {bedrooms}
           </div>
           <div>
-            <FaBath /> {baths}
+            <FaBath /> {bathrooms}
           </div>
           <div>
             <FaUser /> {guests}

@@ -11,19 +11,20 @@ export type Property = {
   hostawayId: string;
   name: string;
   price: string;
-  images: string[];
-  beds: string;
-  baths: string;
   guests: string;
   rating: string;
-  description: string;
-  files: FileList | null;
+  images: string[];
+  bedrooms: string;
+  bathrooms: string;
   isFeatured: boolean;
   cleaningFee: string;
   insuranceFee: string;
+  description: string;
+  files: FileList | null;
   lodgingTaxPercent: string;
   salesTaxPercent: string;
   serviceFeePercent: string;
+  offerings: { name: string; icon: string }[];
 };
 
 export type ServerError = {

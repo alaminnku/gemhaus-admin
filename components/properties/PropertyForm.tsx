@@ -58,24 +58,24 @@ export default function PropertyForm({
         </div>
 
         <div className={styles.item}>
-          <label htmlFor='beds'>Number of beds</label>
+          <label htmlFor='bedrooms'>Number of bedrooms</label>
           <input
-            id='beds'
-            name='beds'
+            id='bedrooms'
+            name='bedrooms'
             type='number'
-            defaultValue={property?.beds}
-            placeholder='Enter number of beds'
+            defaultValue={property?.bedrooms}
+            placeholder='Enter number of bedrooms'
           />
         </div>
 
         <div className={styles.item}>
-          <label htmlFor='baths'>Number of baths</label>
+          <label htmlFor='bathrooms'>Number of bathrooms</label>
           <input
-            id='baths'
-            name='baths'
+            id='bathrooms'
+            name='bathrooms'
             type='number'
-            defaultValue={property?.baths}
-            placeholder='Enter number of baths'
+            defaultValue={property?.bathrooms}
+            placeholder='Enter number of bathrooms'
           />
         </div>
 
