@@ -10,7 +10,7 @@ export type Offering = { name: string; icon: string };
 
 export type Property = {
   _id: string;
-  hostawayId: string;
+  hostawayId: number;
   name: string;
   price: string;
   guests: string;
