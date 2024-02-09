@@ -16,6 +16,8 @@ export type Property = {
   guests: string;
   rating: string;
   images: string[];
+  latitude: number;
+  longitude: number;
   bedrooms: string;
   bathrooms: string;
   isFeatured: boolean;

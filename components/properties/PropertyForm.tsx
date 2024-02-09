@@ -173,6 +173,28 @@ export default function PropertyForm({
           />
         </div>
 
+        <div className={styles.item}>
+          <label htmlFor='latitude'>Latitude</label>
+          <input
+            id='latitude'
+            name='latitude'
+            type='number'
+            defaultValue={property?.latitude}
+            placeholder='Enter property latitude'
+          />
+        </div>
+
+        <div className={styles.item}>
+          <label htmlFor='longitude'>Longitude</label>
+          <input
+            id='longitude'
+            name='longitude'
+            type='number'
+            defaultValue={property?.longitude}
+            placeholder='Enter property longitude'
+          />
+        </div>
+
         <div className={styles.property_offerings}>
           <p>Property offerings</p>
           <div className={styles.offerings}>
