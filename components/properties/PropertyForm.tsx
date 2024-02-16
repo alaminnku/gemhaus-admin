@@ -65,6 +65,7 @@ export default function PropertyForm({
             id='price'
             name='price'
             type='number'
+            step='0.01'
             defaultValue={property?.price}
             placeholder='Enter property price'
           />
@@ -157,6 +158,7 @@ export default function PropertyForm({
             id='insuranceFee'
             name='insuranceFee'
             type='number'
+            step='0.01'
             defaultValue={property?.insuranceFee}
             placeholder='Enter insurance fee'
           />
@@ -168,6 +170,7 @@ export default function PropertyForm({
             id='cleaningFee'
             name='cleaningFee'
             type='number'
+            step='0.01'
             defaultValue={property?.cleaningFee}
             placeholder='Enter cleaning fee'
           />
@@ -178,7 +181,7 @@ export default function PropertyForm({
           <input
             id='latitude'
             name='latitude'
-            type='number'
+            type='text'
             defaultValue={property?.latitude}
             placeholder='Enter property latitude'
           />
@@ -189,7 +192,7 @@ export default function PropertyForm({
           <input
             id='longitude'
             name='longitude'
-            type='number'
+            type='text'
             defaultValue={property?.longitude}
             placeholder='Enter property longitude'
           />
