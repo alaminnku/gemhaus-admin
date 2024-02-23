@@ -2,8 +2,8 @@
 const nextConfig = {
   images: {
     remotePatterns: [
-      { hostname: 'plus.unsplash.com' },
       { hostname: 'd1moobs2b4epxu.cloudfront.net' },
+      { hostname: 'd2e2m62549awvx.cloudfront.net' },
     ],
   },
 };
