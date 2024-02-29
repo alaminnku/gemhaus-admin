@@ -16,3 +16,12 @@
   border-radius: 0.5rem;
   border: 1px solid #ccc;
 }
+
+.file {
+  display: flex;
+  flex-direction: column;
+}
+
+.file label {
+  margin-bottom: 0.5rem;
+}

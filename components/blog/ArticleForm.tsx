@@ -7,7 +7,7 @@ import SubmitButton from '@components/layout/SubmitButton';
 type Props = {
   article?: Article;
   content: string;
-  buttonText: string;
+  buttonText: 'Add Article';
   setContent: Dispatch<SetStateAction<string>>;
   handleSubmit: (formData: FormData) => Promise<void>;
 };
@@ -38,7 +38,8 @@ export default function ArticleForm({
       </div>
 
       <div className={styles.file}>
-        <input type='file' name='file' accept='image/*' />
+        <label htmlFor='file'>Upload article image</label>
+        <input type='file' id='file' name='file' accept='image/*' />
       </div>
 
       <SubmitButton text={buttonText} />

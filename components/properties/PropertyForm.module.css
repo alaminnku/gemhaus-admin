@@ -50,3 +50,12 @@
   border-radius: 0.5rem;
   border: 1px solid #ccc;
 }
+
+.files {
+  display: flex;
+  flex-direction: column;
+}
+
+.files label {
+  margin-bottom: 0.5rem;
+}

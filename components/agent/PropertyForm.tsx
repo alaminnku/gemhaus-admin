@@ -8,8 +8,8 @@ import SubmitButton from '@components/layout/SubmitButton';
 
 type Props = {
   property?: AgentProperty;
-  buttonText: string;
   description: string;
+  buttonText: 'Add Property';
   handleSubmit: (formData: FormData) => Promise<void>;
   setDescription: Dispatch<SetStateAction<string>>;
 };

@@ -8,9 +8,9 @@ import SubmitButton from '@components/layout/SubmitButton';
 
 type Props = {
   property?: Property;
-  buttonText: string;
   description: string;
   offerings: Offering[];
+  buttonText: 'Add Property';
   handleSubmit: (formData: FormData) => Promise<void>;
   setDescription: Dispatch<SetStateAction<string>>;
   setSelectedOfferings: Dispatch<SetStateAction<string[]>>;
@@ -230,7 +230,8 @@ export default function PropertyForm({
       </div>
 
       <div className={styles.files}>
-        <input multiple type='file' name='files' accept='image/*' />
+        <label htmlFor='files'>Upload property images</label>
+        <input multiple type='file' id='files' name='files' accept='image/*' />
       </div>
 
       <SubmitButton text={buttonText} />

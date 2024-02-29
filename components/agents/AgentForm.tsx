@@ -6,8 +6,8 @@ import { Agent } from 'types';
 
 type Props = {
   agent?: Agent;
-  buttonText: string;
   content: string;
+  buttonText: 'Add Agent';
   setContent: Dispatch<SetStateAction<string>>;
   handleSubmit: (formData: FormData) => Promise<void>;
 };
