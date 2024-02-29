@@ -23,8 +23,11 @@
 }
 
 @media (min-width: 1024px) {
-  .container img {
+  .container {
     width: 335px;
+  }
+
+  .container img {
     height: 335px;
   }
 
