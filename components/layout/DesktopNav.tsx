@@ -27,6 +27,12 @@ export default function DesktopNav() {
         >
           Blog
         </Link>
+        <Link
+          href='/agents'
+          className={pathname === '/agents' ? styles.active : ''}
+        >
+          Agents
+        </Link>
 
         {/* <Link href='/sign-in' className={styles.sign_in}>
           Sign in <HiOutlineUserCircle />

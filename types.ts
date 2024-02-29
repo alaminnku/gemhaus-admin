@@ -34,3 +34,15 @@ export type Property = {
 export type ServerError = {
   message: string;
 };
+
+export type Agent = {
+  _id: string;
+  name: string;
+  phone: string;
+  email: string;
+  address: string;
+  bio: string;
+  image: string;
+  qrCodeLink: string;
+  file: File | undefined;
+};

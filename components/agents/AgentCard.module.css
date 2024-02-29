@@ -1,0 +1,20 @@
+.container {
+  color: var(--white);
+  border-radius: 0.5rem;
+  background-color: var(--black);
+}
+
+.container img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem 0.5rem 0rem 0rem;
+}
+
+.content {
+  padding: 1rem;
+}
+
+.published {
+  font-size: 14px;
+  margin-bottom: 1rem;
+}

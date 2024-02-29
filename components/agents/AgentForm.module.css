@@ -1,0 +1,33 @@
+.items {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.items,
+.content,
+.file {
+  margin-bottom: 2rem;
+}
+
+.file {
+  display: flex;
+  flex-direction: column;
+}
+
+.file label {
+  margin-bottom: 0.5rem;
+}
+
+.item label,
+.content label {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+
+.item input {
+  padding: 0.75rem 1rem;
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+}
