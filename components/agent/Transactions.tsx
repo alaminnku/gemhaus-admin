@@ -6,10 +6,14 @@ type Props = {
 };
 
 export default function Transactions({ agent }: Props) {
+  const soldTransactions = agent.transactions.filter(
+    (transaction) => transaction.type === 'sold'
+  );
+
   return (
     <section className={styles.container}>
       <h2>
-        Bill's Transaction <br /> History
+        {agent.name}'s Transaction <br /> History
       </h2>
       <table>
         <thead>
@@ -19,26 +23,12 @@ export default function Transactions({ agent }: Props) {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1100 E. Knox Road Tempe, AZ 85284</td>
-            <td>Sold</td>
-          </tr>
-          <tr>
-            <td>1100 E. Knox Road Tempe, AZ 85284</td>
-            <td>Sold</td>
-          </tr>
-          <tr>
-            <td>1100 E. Knox Road Tempe, AZ 85284</td>
-            <td>Sold</td>
-          </tr>
-          <tr>
-            <td>1100 E. Knox Road Tempe, AZ 85284</td>
-            <td>Sold</td>
-          </tr>
-          <tr>
-            <td>1100 E. Knox Road Tempe, AZ 85284</td>
-            <td>Sold</td>
-          </tr>
+          {soldTransactions.map((transaction) => (
+            <tr>
+              <td>{transaction.address}</td>
+              <td>{transaction.type}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </section>

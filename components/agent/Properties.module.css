@@ -91,8 +91,16 @@
   }
 
   .card {
+    width: 765px;
+    flex-direction: row;
+  }
+
+  .image_and_price {
     width: 445px;
-    align-items: center;
+  }
+
+  .address_and_description {
+    width: 320px;
   }
 
   .image_and_price img {

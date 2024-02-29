@@ -1,0 +1,19 @@
+.items {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(2, 1fr);
+  margin-bottom: 2rem;
+}
+
+.item label {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+
+.item input,
+.item select {
+  padding: 0.75rem 1rem;
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+}

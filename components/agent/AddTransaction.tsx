@@ -1,25 +1,21 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import PropertyForm from './PropertyForm';
-import { useState } from 'react';
+import styles from './AddTransaction.module.css';
 import { fetchGemhausData } from '@lib/utils';
 import revalidate from '@lib/revalidate';
-import styles from './AddProperty.module.css';
+import TransactionForm from './TransactionForm';
 
 type Props = {
   id: string;
 };
 
-export default function AddProperty({ id }: Props) {
+export default function AddTransaction({ id }: Props) {
   const router = useRouter();
-  const [description, setDescription] = useState('');
 
-  // Add agent's property
+  // Add agent's transaction
   async function handleSubmit(formData: FormData) {
-    formData.append('description', description);
-
-    const { error } = await fetchGemhausData(`/users/agent/${id}/property`, {
+    const { error } = await fetchGemhausData(`/users/agent/${id}/transaction`, {
       method: 'POST',
       body: formData,
     });
@@ -31,13 +27,11 @@ export default function AddProperty({ id }: Props) {
 
   return (
     <section className={styles.container}>
-      <h1>Add Agent's Property</h1>
+      <h1>Add Agent's Transaction</h1>
 
-      <PropertyForm
-        buttonText='Add Property'
+      <TransactionForm
         handleSubmit={handleSubmit}
-        description={description}
-        setDescription={setDescription}
+        buttonText='Add Transaction'
       />
     </section>
   );

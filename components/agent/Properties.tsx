@@ -17,7 +17,7 @@ export default function Properties({ agent }: Props) {
           <div className={styles.card}>
             <div key={property._id} className={styles.image_and_price}>
               <Image
-                src={property.image}
+                src={property.images[0]}
                 width={800}
                 height={500}
                 alt='Property image'
@@ -25,12 +25,14 @@ export default function Properties({ agent }: Props) {
               <p className={styles.price}>{createUSD(property.price)}</p>
             </div>
 
-            <div>
+            <div className={styles.address_and_description}>
               <p className={styles.address}>{property.address}</p>
               <p className={styles.state}>
                 {property.city}, {property.state}
               </p>
-              <p className={styles.about}>{property.description}</p>
+              <div
+                dangerouslySetInnerHTML={{ __html: property.description }}
+              ></div>
             </div>
           </div>
         ))}

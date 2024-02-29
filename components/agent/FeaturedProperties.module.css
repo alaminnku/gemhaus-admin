@@ -52,6 +52,8 @@
 
 .property_image {
   width: 335px;
+  height: 316px;
+  object-fit: cover;
   border-radius: 12px;
   margin-bottom: 40px;
 }
