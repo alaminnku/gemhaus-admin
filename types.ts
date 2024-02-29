@@ -45,4 +45,22 @@ export type Agent = {
   image: string;
   qrCodeLink: string;
   file: File | undefined;
+  properties: AgentProperty[];
+};
+
+export type AgentProperty = {
+  _id: string;
+  isFeatured: boolean;
+  price: number;
+  address: string;
+  city: string;
+  state: string;
+  image: string;
+  description: string;
+  file: File | undefined;
+};
+
+export type AgentTransaction = {
+  address: string;
+  status: 'sold';
 };

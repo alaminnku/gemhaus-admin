@@ -1,0 +1,61 @@
+.items {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.isFeatured,
+.description,
+.files {
+  margin-bottom: 2rem;
+}
+
+.property_offerings {
+  grid-column: span 2;
+}
+
+.property_offerings p {
+  margin-bottom: 0.5rem;
+}
+
+.offerings {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+}
+
+.offering {
+  display: flex;
+  align-items: center;
+}
+
+.offering label {
+  font-size: 14px;
+}
+
+.item label,
+.description label {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+
+.isFeatured label,
+.offering input {
+  margin-right: 0.5rem;
+}
+
+.item input {
+  padding: 0.75rem 1rem;
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+}
+
+.files {
+  display: flex;
+  flex-direction: column;
+}
+
+.files label {
+  margin-bottom: 0.5rem;
+}

@@ -9,27 +9,28 @@ import styles from './AddAgent.module.css';
 
 export default function AddAgent() {
   const router = useRouter();
-  const [content, setContent] = useState('');
+  const [bio, setBio] = useState('');
 
   // Add agent
   async function handleSubmit(formData: FormData) {
-    formData.append('content', content);
+    formData.append('bio', bio);
 
-    const { error } = await fetchGemhausData('/agents', {
+    const { error } = await fetchGemhausData('/users/agent', {
       method: 'POST',
       body: formData,
     });
     if (error) return console.log(error);
 
-    revalidate('articles');
+    revalidate('agents');
     router.push('/agents');
   }
+
   return (
     <section className={styles.container}>
       <h1>Add Agent</h1>
       <AgentForm
-        content={content}
-        setContent={setContent}
+        content={bio}
+        setContent={setBio}
         handleSubmit={handleSubmit}
         buttonText='Add Agent'
       />

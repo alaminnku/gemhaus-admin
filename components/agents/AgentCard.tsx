@@ -1,5 +1,7 @@
 import { Agent } from 'types';
 import styles from './AgentCard.module.css';
+import Link from 'next/link';
+import Image from 'next/image';
 
 type Props = {
   agent: Agent;
@@ -7,8 +9,17 @@ type Props = {
 
 export default function AgentCard({ agent }: Props) {
   return (
-    <div className={styles.container}>
-      <p>{agent.name}</p>
-    </div>
+    <Link href={`/agents/${agent._id}`} className={styles.container}>
+      <Image
+        src={agent.image}
+        width={400}
+        height={400}
+        alt={`${agent.name}'s image`}
+      />
+
+      <p className={styles.name}>{agent.name}</p>
+      <p className={styles.email}>{agent.email}</p>
+      <p className={styles.phone}>{agent.phone}</p>
+    </Link>
   );
 }

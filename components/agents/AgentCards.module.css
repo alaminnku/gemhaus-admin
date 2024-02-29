@@ -1,5 +1,13 @@
 .container {
   display: grid;
-  gap: 2rem;
-  grid-template-columns: repeat(3, 1fr);
+  gap: 21px;
+  margin-bottom: 77px;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    gap: 50px 18px;
+    margin-bottom: 69px;
+    grid-template-columns: repeat(auto-fit, minmax(335px, 1fr));
+  }
 }

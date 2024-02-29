@@ -39,3 +39,10 @@ export const dateToText = (input: Date | string | number | undefined) => {
   };
   return date.toLocaleString('en-US', options);
 };
+
+// Format currency to USD
+export const createUSD = (number: number) =>
+  new Intl.NumberFormat('en-us', {
+    style: 'currency',
+    currency: 'USD',
+  }).format(number);

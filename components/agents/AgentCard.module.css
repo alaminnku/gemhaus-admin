@@ -1,20 +1,41 @@
 .container {
-  color: var(--white);
-  border-radius: 0.5rem;
-  background-color: var(--black);
+  color: var(--black);
 }
 
 .container img {
   width: 100%;
-  height: auto;
-  border-radius: 0.5rem 0.5rem 0rem 0rem;
+  height: 382px;
+  object-fit: cover;
+  border-radius: 20px;
+  margin-bottom: 14px;
 }
 
-.content {
-  padding: 1rem;
+.name {
+  font-size: 27px;
+  font-weight: 500;
+  margin-bottom: 14px;
 }
 
-.published {
-  font-size: 14px;
-  margin-bottom: 1rem;
+.email,
+.phone {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+@media (min-width: 1024px) {
+  .container img {
+    width: 335px;
+    height: 335px;
+  }
+
+  .name {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+
+  .email,
+  .phone {
+    font-size: 14px;
+    font-weight: 500;
+  }
 }
