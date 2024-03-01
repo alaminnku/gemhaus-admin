@@ -1,3 +1,21 @@
+import { User } from 'next-auth';
+
+declare module 'next-auth' {
+  interface Session {
+    user: User & {
+      id: string;
+      role: 'ADMIN';
+    };
+  }
+}
+
+declare module 'next-auth/jwt' {
+  interface JWT {
+    id: string;
+    role: 'ADMIN';
+  }
+}
+
 export type Article = {
   _id: string;
   title: string;
