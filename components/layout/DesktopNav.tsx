@@ -6,9 +6,11 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { HiOutlineUserCircle } from 'react-icons/hi2';
 import { IoIosLogOut } from 'react-icons/io';
+import { signOut, useSession } from 'next-auth/react';
 
 export default function DesktopNav() {
   const pathname = usePathname();
+  const { data: session } = useSession();
 
   return (
     <nav className={styles.container}>
@@ -34,13 +36,15 @@ export default function DesktopNav() {
           Agents
         </Link>
 
-        {/* <Link href='/sign-in' className={styles.sign_in}>
-          Sign in <HiOutlineUserCircle />
-        </Link> */}
-
-        <button className={styles.logout}>
-          Logout <IoIosLogOut />
-        </button>
+        {!session || session.user.role !== 'ADMIN' ? (
+          <Link href='/sign-in' className={styles.sign_in}>
+            Sign in <HiOutlineUserCircle />
+          </Link>
+        ) : (
+          <button onClick={() => signOut()} className={styles.sign_out}>
+            Sign out <IoIosLogOut />
+          </button>
+        )}
       </div>
     </nav>
   );

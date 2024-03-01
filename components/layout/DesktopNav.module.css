@@ -10,9 +10,9 @@
 }
 
 .navigation a {
+  font-size: 14px;
   margin: 0rem 1rem;
   color: var(--black);
-  font-size: 14px;
 }
 
 .navigation a.active {
@@ -20,7 +20,8 @@
 }
 
 .navigation .sign_in,
-.logout {
+.navigation .sign_out {
+  cursor: pointer;
   display: flex;
   align-items: center;
   border-radius: 2rem;
@@ -29,11 +30,8 @@
   background-color: var(--green);
 }
 
-.navigation svg {
+.sign_in svg,
+.sign_out svg {
   margin-left: 0.5rem;
   font-size: 1.25rem;
-}
-
-.logout {
-  border: none;
 }

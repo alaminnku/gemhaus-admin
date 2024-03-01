@@ -46,3 +46,8 @@ export const createUSD = (number: number) =>
     style: 'currency',
     currency: 'USD',
   }).format(number);
+
+export const isValidEmail = (email: string) => {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(email);
+};

@@ -50,6 +50,7 @@ a {
   text-decoration: none;
 }
 
+button,
 input,
 select,
 textarea {
@@ -66,8 +67,10 @@ input[type='number'] {
   -moz-appearance: textfield;
 }
 
+button,
 textarea {
   resize: none;
+  font-family: inherit;
 }
 
 .ql-toolbar.ql-snow {
