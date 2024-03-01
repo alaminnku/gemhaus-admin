@@ -6,6 +6,7 @@ import { fetchGemhausData } from '@lib/utils';
 import revalidate from '@lib/revalidate';
 import TransactionForm from './TransactionForm';
 import { useAlert } from '@contexts/Alert';
+import { useSession } from 'next-auth/react';
 
 type Props = {
   id: string;
@@ -13,6 +14,7 @@ type Props = {
 
 export default function AddTransaction({ id }: Props) {
   const router = useRouter();
+  const { data } = useSession();
   const { setAlert } = useAlert();
 
   // Add agent's transaction
@@ -20,6 +22,9 @@ export default function AddTransaction({ id }: Props) {
     const { error } = await fetchGemhausData(`/users/agent/${id}/transaction`, {
       method: 'POST',
       body: formData,
+      headers: {
+        Authorization: `Bearer ${data?.user.id}`,
+      },
     });
     if (error) return setAlert({ message: error.message, type: 'failed' });
 

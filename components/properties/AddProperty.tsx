@@ -8,6 +8,7 @@ import revalidate from 'lib/revalidate';
 import { useRouter } from 'next/navigation';
 import { Offering } from 'types';
 import { useAlert } from '@contexts/Alert';
+import { useSession } from 'next-auth/react';
 
 type Props = {
   offerings: Offering[];
@@ -15,6 +16,7 @@ type Props = {
 
 export default function AddProperty({ offerings }: Props) {
   const router = useRouter();
+  const { data } = useSession();
   const { setAlert } = useAlert();
   const [description, setDescription] = useState('');
   const [selectedOfferings, setSelectedOfferings] = useState<string[]>([]);
@@ -26,6 +28,9 @@ export default function AddProperty({ offerings }: Props) {
     const { error } = await fetchGemhausData('/properties', {
       method: 'POST',
       body: formData,
+      headers: {
+        Authorization: `Bearer ${data?.user.id}`,
+      },
     });
     if (error) return setAlert({ message: error.message, type: 'failed' });
 

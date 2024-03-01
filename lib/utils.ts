@@ -2,6 +2,9 @@ type FetchGemhausDataOptions = {
   body?: FormData;
   method?: 'POST' | 'DELETE';
   next?: { tags: string[] };
+  headers?: {
+    Authorization: string;
+  };
 };
 
 // Fetch Gemhaus data

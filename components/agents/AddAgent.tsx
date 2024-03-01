@@ -7,9 +7,11 @@ import { fetchGemhausData } from '@lib/utils';
 import revalidate from '@lib/revalidate';
 import styles from './AddAgent.module.css';
 import { useAlert } from '@contexts/Alert';
+import { useSession } from 'next-auth/react';
 
 export default function AddAgent() {
   const router = useRouter();
+  const { data } = useSession();
   const { setAlert } = useAlert();
   const [bio, setBio] = useState('');
 
@@ -20,6 +22,9 @@ export default function AddAgent() {
     const { error } = await fetchGemhausData('/users/agent', {
       method: 'POST',
       body: formData,
+      headers: {
+        Authorization: `Bearer ${data?.user.id}`,
+      },
     });
     if (error) return setAlert({ message: error.message, type: 'failed' });
 

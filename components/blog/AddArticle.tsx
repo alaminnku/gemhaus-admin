@@ -7,9 +7,11 @@ import revalidate from 'lib/revalidate';
 import { fetchGemhausData } from '@lib/utils';
 import { useRouter } from 'next/navigation';
 import { useAlert } from '@contexts/Alert';
+import { useSession } from 'next-auth/react';
 
 export default function AddArticle() {
   const router = useRouter();
+  const { data } = useSession();
   const { setAlert } = useAlert();
   const [content, setContent] = useState('');
 
@@ -20,6 +22,9 @@ export default function AddArticle() {
     const { error } = await fetchGemhausData('/articles', {
       method: 'POST',
       body: formData,
+      headers: {
+        Authorization: `Bearer ${data?.user.id}`,
+      },
     });
     if (error) return setAlert({ message: error.message, type: 'failed' });
 

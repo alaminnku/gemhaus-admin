@@ -7,6 +7,7 @@ import { fetchGemhausData } from '@lib/utils';
 import revalidate from '@lib/revalidate';
 import styles from './AddProperty.module.css';
 import { useAlert } from '@contexts/Alert';
+import { useSession } from 'next-auth/react';
 
 type Props = {
   id: string;
@@ -14,6 +15,7 @@ type Props = {
 
 export default function AddProperty({ id }: Props) {
   const router = useRouter();
+  const { data } = useSession();
   const { setAlert } = useAlert();
   const [description, setDescription] = useState('');
 
@@ -24,6 +26,9 @@ export default function AddProperty({ id }: Props) {
     const { error } = await fetchGemhausData(`/users/agent/${id}/property`, {
       method: 'POST',
       body: formData,
+      headers: {
+        Authorization: `Bearer ${data?.user.id}`,
+      },
     });
     if (error) return setAlert({ message: error.message, type: 'failed' });
 
