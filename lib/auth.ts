@@ -43,21 +43,16 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token }) {
-      const { data, error } = await fetchGemhausData(`/users/${token.sub}`);
-      if (error) return token;
-
-      return {
-        ...token,
-        id: data._id,
-        role: data.role,
-      };
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.role = user.role;
+      }
+      return token;
     },
-    async session({ token, session }) {
-      if (token) {
+    async session({ session, token }) {
+      if (session.user) {
         session.user.id = token.id;
-        session.user.name = token.name;
-        session.user.email = token.email;
         session.user.role = token.role;
       }
       return session;

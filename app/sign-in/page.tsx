@@ -1,8 +1,10 @@
 'use client';
 
-import { signIn, signOut } from 'next-auth/react';
+import { signIn, signOut, useSession } from 'next-auth/react';
 
 export default function SingInPage() {
+  const { data } = useSession();
+
   return (
     <main>
       <input type='text' placeholder='Email' />
