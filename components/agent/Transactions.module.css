@@ -37,6 +37,7 @@
   text-align: right;
   color: #d76767;
   font-weight: 500;
+  text-transform: capitalize;
 }
 
 .container tbody tr:hover {

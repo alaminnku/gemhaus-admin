@@ -22,7 +22,7 @@ export default function ArticleForm({
   return (
     <form action={handleSubmit}>
       <div className={styles.title}>
-        <label htmlFor='title'>Article title</label>
+        <label htmlFor='title'>Article title*</label>
         <input
           type='text'
           id='title'
@@ -33,12 +33,12 @@ export default function ArticleForm({
       </div>
 
       <div className={styles.content}>
-        <label>Article content</label>
+        <label>Article content*</label>
         <RichText value={content} setValue={setContent} />
       </div>
 
       <div className={styles.file}>
-        <label htmlFor='file'>Upload article image</label>
+        <label htmlFor='file'>Upload article image*</label>
         <input type='file' id='file' name='file' accept='image/*' />
       </div>
 

@@ -11,7 +11,7 @@ export default function TransactionForm({ buttonText, handleSubmit }: Props) {
     <form action={handleSubmit}>
       <div className={styles.items}>
         <div className={styles.item}>
-          <label htmlFor='address'>Transaction address</label>
+          <label htmlFor='address'>Transaction address*</label>
           <input
             type='text'
             id='address'
@@ -20,7 +20,7 @@ export default function TransactionForm({ buttonText, handleSubmit }: Props) {
           />
         </div>
         <div className={styles.item}>
-          <label htmlFor='type'>Transaction type</label>
+          <label htmlFor='type'>Transaction type*</label>
           <select name='type' id='type'>
             <option hidden aria-hidden value='---Select one---'>
               ---Select one---

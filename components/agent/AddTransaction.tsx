@@ -5,6 +5,7 @@ import styles from './AddTransaction.module.css';
 import { fetchGemhausData } from '@lib/utils';
 import revalidate from '@lib/revalidate';
 import TransactionForm from './TransactionForm';
+import { useAlert } from '@contexts/Alert';
 
 type Props = {
   id: string;
@@ -12,6 +13,7 @@ type Props = {
 
 export default function AddTransaction({ id }: Props) {
   const router = useRouter();
+  const { setAlert } = useAlert();
 
   // Add agent's transaction
   async function handleSubmit(formData: FormData) {
@@ -19,7 +21,7 @@ export default function AddTransaction({ id }: Props) {
       method: 'POST',
       body: formData,
     });
-    if (error) return console.log(error);
+    if (error) return setAlert({ message: error.message, type: 'failed' });
 
     revalidate(`agent-${id}`);
     router.push(`/agents/${id}`);

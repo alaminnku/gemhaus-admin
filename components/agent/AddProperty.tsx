@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { fetchGemhausData } from '@lib/utils';
 import revalidate from '@lib/revalidate';
 import styles from './AddProperty.module.css';
+import { useAlert } from '@contexts/Alert';
 
 type Props = {
   id: string;
@@ -13,6 +14,7 @@ type Props = {
 
 export default function AddProperty({ id }: Props) {
   const router = useRouter();
+  const { setAlert } = useAlert();
   const [description, setDescription] = useState('');
 
   // Add agent's property
@@ -23,7 +25,7 @@ export default function AddProperty({ id }: Props) {
       method: 'POST',
       body: formData,
     });
-    if (error) return console.log(error);
+    if (error) return setAlert({ message: error.message, type: 'failed' });
 
     revalidate(`agent-${id}`);
     router.push(`/agents/${id}`);

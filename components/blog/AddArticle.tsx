@@ -6,9 +6,11 @@ import styles from './AddArticle.module.css';
 import revalidate from 'lib/revalidate';
 import { fetchGemhausData } from '@lib/utils';
 import { useRouter } from 'next/navigation';
+import { useAlert } from '@contexts/Alert';
 
 export default function AddArticle() {
   const router = useRouter();
+  const { setAlert } = useAlert();
   const [content, setContent] = useState('');
 
   // Add article
@@ -19,7 +21,7 @@ export default function AddArticle() {
       method: 'POST',
       body: formData,
     });
-    if (error) return console.log(error);
+    if (error) return setAlert({ message: error.message, type: 'failed' });
 
     revalidate('articles');
     router.push('/blog');

@@ -38,7 +38,7 @@ export default function PropertyForm({
     <form action={handleSubmit}>
       <div className={styles.items}>
         <div className={styles.item}>
-          <label htmlFor='hostawayId'>Hostaway Id</label>
+          <label htmlFor='hostawayId'>Hostaway Id*</label>
           <input
             id='hostawayId'
             name='hostawayId'
@@ -49,7 +49,7 @@ export default function PropertyForm({
         </div>
 
         <div className={styles.item}>
-          <label htmlFor='name'>Property name</label>
+          <label htmlFor='name'>Property name*</label>
           <input
             id='name'
             name='name'
@@ -60,7 +60,7 @@ export default function PropertyForm({
         </div>
 
         <div className={styles.item}>
-          <label htmlFor='price'>Property price</label>
+          <label htmlFor='price'>Property price*</label>
           <input
             id='price'
             name='price'
@@ -72,7 +72,7 @@ export default function PropertyForm({
         </div>
 
         <div className={styles.item}>
-          <label htmlFor='bedrooms'>Number of bedrooms</label>
+          <label htmlFor='bedrooms'>Number of bedrooms*</label>
           <input
             id='bedrooms'
             name='bedrooms'
@@ -83,7 +83,7 @@ export default function PropertyForm({
         </div>
 
         <div className={styles.item}>
-          <label htmlFor='bathrooms'>Number of bathrooms</label>
+          <label htmlFor='bathrooms'>Number of bathrooms*</label>
           <input
             id='bathrooms'
             name='bathrooms'
@@ -94,7 +94,7 @@ export default function PropertyForm({
         </div>
 
         <div className={styles.item}>
-          <label htmlFor='guests'>Number of guests</label>
+          <label htmlFor='guests'>Number of guests*</label>
           <input
             id='guests'
             name='guests'
@@ -105,7 +105,7 @@ export default function PropertyForm({
         </div>
 
         <div className={styles.item}>
-          <label htmlFor='ratings'>Property rating</label>
+          <label htmlFor='ratings'>Property rating*</label>
           <input
             id='rating'
             name='rating'
@@ -117,7 +117,7 @@ export default function PropertyForm({
         </div>
 
         <div className={styles.item}>
-          <label htmlFor='serviceFeePercent'>Service fee (%)</label>
+          <label htmlFor='serviceFeePercent'>Service fee (%)*</label>
           <input
             id='serviceFeePercent'
             name='serviceFeePercent'
@@ -129,7 +129,7 @@ export default function PropertyForm({
         </div>
 
         <div className={styles.item}>
-          <label htmlFor='salesTaxPercent'>Sales tax (%)</label>
+          <label htmlFor='salesTaxPercent'>Sales tax (%)*</label>
           <input
             id='salesTaxPercent'
             name='salesTaxPercent'
@@ -141,7 +141,7 @@ export default function PropertyForm({
         </div>
 
         <div className={styles.item}>
-          <label htmlFor='lodgingTaxPercent'>Lodging tax (%)</label>
+          <label htmlFor='lodgingTaxPercent'>Lodging tax (%)*</label>
           <input
             id='lodgingTaxPercent'
             name='lodgingTaxPercent'
@@ -153,7 +153,7 @@ export default function PropertyForm({
         </div>
 
         <div className={styles.item}>
-          <label htmlFor='insuranceFee'>Insurance fee</label>
+          <label htmlFor='insuranceFee'>Insurance fee*</label>
           <input
             id='insuranceFee'
             name='insuranceFee'
@@ -165,7 +165,7 @@ export default function PropertyForm({
         </div>
 
         <div className={styles.item}>
-          <label htmlFor='cleaningFee'>Cleaning fee</label>
+          <label htmlFor='cleaningFee'>Cleaning fee*</label>
           <input
             id='cleaningFee'
             name='cleaningFee'
@@ -177,7 +177,7 @@ export default function PropertyForm({
         </div>
 
         <div className={styles.item}>
-          <label htmlFor='latitude'>Latitude</label>
+          <label htmlFor='latitude'>Latitude*</label>
           <input
             id='latitude'
             name='latitude'
@@ -188,7 +188,7 @@ export default function PropertyForm({
         </div>
 
         <div className={styles.item}>
-          <label htmlFor='longitude'>Longitude</label>
+          <label htmlFor='longitude'>Longitude*</label>
           <input
             id='longitude'
             name='longitude'
@@ -199,7 +199,7 @@ export default function PropertyForm({
         </div>
 
         <div className={styles.property_offerings}>
-          <p>Property offerings</p>
+          <p>Property offerings*</p>
           <div className={styles.offerings}>
             {offerings.map((offering, index) => (
               <div className={styles.offering} key={index}>
@@ -225,12 +225,12 @@ export default function PropertyForm({
       </div>
 
       <div className={styles.description}>
-        <label>Property description</label>
+        <label>Property description*</label>
         <RichText value={description} setValue={setDescription} />
       </div>
 
       <div className={styles.files}>
-        <label htmlFor='files'>Upload property images</label>
+        <label htmlFor='files'>Upload property images*</label>
         <input multiple type='file' id='files' name='files' accept='image/*' />
       </div>
 

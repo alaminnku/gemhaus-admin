@@ -65,3 +65,8 @@ export type AgentTransaction = {
   address: string;
   type: 'sold' | 'available';
 };
+
+export type Alert = {
+  message: string;
+  type: 'success' | 'failed';
+};

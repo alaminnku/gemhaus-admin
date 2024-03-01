@@ -23,7 +23,7 @@
       "@components/*": ["components/*"],
       "@public/*": ["public/*"],
       "@lib/*": ["lib/*"],
-      "@context/*": ["context/*"],
+      "@contexts/*": ["contexts/*"],
       "@data/*": ["data/*"]
     }
   },

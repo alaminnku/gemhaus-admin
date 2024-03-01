@@ -23,7 +23,7 @@ export default function AgentForm({
     <form action={handleSubmit}>
       <div className={styles.items}>
         <div className={styles.item}>
-          <label htmlFor='name'>Agent name</label>
+          <label htmlFor='name'>Agent name*</label>
           <input
             type='text'
             id='name'
@@ -33,7 +33,7 @@ export default function AgentForm({
           />
         </div>
         <div className={styles.item}>
-          <label htmlFor='email'>Agent email</label>
+          <label htmlFor='email'>Agent email*</label>
           <input
             type='email'
             id='email'
@@ -43,7 +43,7 @@ export default function AgentForm({
           />
         </div>
         <div className={styles.item}>
-          <label htmlFor='phone'>Agent phone</label>
+          <label htmlFor='phone'>Agent phone*</label>
           <input
             type='text'
             id='phone'
@@ -53,7 +53,7 @@ export default function AgentForm({
           />
         </div>
         <div className={styles.item}>
-          <label htmlFor='address'>Agent address</label>
+          <label htmlFor='address'>Agent address*</label>
           <input
             type='text'
             id='address'
@@ -63,7 +63,7 @@ export default function AgentForm({
           />
         </div>
         <div className={styles.item}>
-          <label htmlFor='qrCodeLink'>Agent QR code link</label>
+          <label htmlFor='qrCodeLink'>Agent QR code link*</label>
           <input
             type='text'
             id='qrCodeLink'
@@ -75,12 +75,12 @@ export default function AgentForm({
       </div>
 
       <div className={styles.content}>
-        <label>Agent bio</label>
+        <label>Agent bio*</label>
         <RichText value={content} setValue={setContent} />
       </div>
 
       <div className={styles.file}>
-        <label htmlFor='file'>Upload agent image</label>
+        <label htmlFor='file'>Upload agent image*</label>
         <input type='file' id='file' name='file' accept='image/*' />
       </div>
 

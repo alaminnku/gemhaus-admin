@@ -25,7 +25,7 @@ export default function PropertyForm({
     <form action={handleSubmit}>
       <div className={styles.items}>
         <div className={styles.item}>
-          <label htmlFor='address'>Property address</label>
+          <label htmlFor='address'>Property address*</label>
           <input
             id='address'
             name='address'
@@ -35,7 +35,7 @@ export default function PropertyForm({
           />
         </div>
         <div className={styles.item}>
-          <label htmlFor='city'>Property city</label>
+          <label htmlFor='city'>Property city*</label>
           <input
             id='city'
             name='city'
@@ -45,7 +45,7 @@ export default function PropertyForm({
           />
         </div>
         <div className={styles.item}>
-          <label htmlFor='state'>Property state</label>
+          <label htmlFor='state'>Property state*</label>
           <input
             id='state'
             name='state'
@@ -55,7 +55,7 @@ export default function PropertyForm({
           />
         </div>
         <div className={styles.item}>
-          <label htmlFor='price'>Property price</label>
+          <label htmlFor='price'>Property price*</label>
           <input
             id='price'
             name='price'
@@ -78,12 +78,12 @@ export default function PropertyForm({
       </div>
 
       <div className={styles.description}>
-        <label>Property description</label>
+        <label>Property description*</label>
         <RichText value={description} setValue={setDescription} />
       </div>
 
       <div className={styles.files}>
-        <label htmlFor='files'>Upload property images</label>
+        <label htmlFor='files'>Upload property images*</label>
         <input multiple type='file' id='files' name='files' accept='image/*' />
       </div>
 

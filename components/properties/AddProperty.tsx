@@ -7,6 +7,7 @@ import { fetchGemhausData } from '@lib/utils';
 import revalidate from 'lib/revalidate';
 import { useRouter } from 'next/navigation';
 import { Offering } from 'types';
+import { useAlert } from '@contexts/Alert';
 
 type Props = {
   offerings: Offering[];
@@ -14,6 +15,7 @@ type Props = {
 
 export default function AddProperty({ offerings }: Props) {
   const router = useRouter();
+  const { setAlert } = useAlert();
   const [description, setDescription] = useState('');
   const [selectedOfferings, setSelectedOfferings] = useState<string[]>([]);
 
@@ -25,7 +27,7 @@ export default function AddProperty({ offerings }: Props) {
       method: 'POST',
       body: formData,
     });
-    if (error) return console.log(error);
+    if (error) return setAlert({ message: error.message, type: 'failed' });
 
     revalidate('properties');
     router.push('/properties');

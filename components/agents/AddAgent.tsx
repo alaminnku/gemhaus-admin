@@ -6,9 +6,11 @@ import { useState } from 'react';
 import { fetchGemhausData } from '@lib/utils';
 import revalidate from '@lib/revalidate';
 import styles from './AddAgent.module.css';
+import { useAlert } from '@contexts/Alert';
 
 export default function AddAgent() {
   const router = useRouter();
+  const { setAlert } = useAlert();
   const [bio, setBio] = useState('');
 
   // Add agent
@@ -19,7 +21,7 @@ export default function AddAgent() {
       method: 'POST',
       body: formData,
     });
-    if (error) return console.log(error);
+    if (error) return setAlert({ message: error.message, type: 'failed' });
 
     revalidate('agents');
     router.push('/agents');
