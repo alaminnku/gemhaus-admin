@@ -21,7 +21,7 @@ export default function AddTransaction({ id }: Props) {
     });
     if (error) return console.log(error);
 
-    revalidate(`/agents/${id}`);
+    revalidate(`agent-${id}`);
     router.push(`/agents/${id}`);
   }
 

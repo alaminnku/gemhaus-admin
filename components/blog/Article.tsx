@@ -4,7 +4,9 @@ import styles from './Article.module.css';
 import Image from 'next/image';
 
 export default async function Article({ id }: { id: string }) {
-  const { data, error } = await fetchGemhausData(`/articles/${id}`);
+  const { data, error } = await fetchGemhausData(`/articles/${id}`, {
+    next: { tags: [`article-${id}`] },
+  });
 
   return (
     <section className={styles.container}>

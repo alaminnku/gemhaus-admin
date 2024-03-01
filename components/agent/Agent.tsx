@@ -11,7 +11,7 @@ type Props = {
 
 export default async function Agent({ id }: Props) {
   const { data, error } = await fetchGemhausData(`/users/agent/${id}`, {
-    next: { tags: ['agents'] },
+    next: { tags: [`agent-${id}`] },
   });
 
   return (

@@ -3,7 +3,9 @@ import { fetchGemhausData } from '@lib/utils';
 import styles from './Property.module.css';
 
 export default async function Property({ id }: { id: string }) {
-  const { data, error } = await fetchGemhausData(`/properties/${id}`);
+  const { data, error } = await fetchGemhausData(`/properties/${id}`, {
+    next: { tags: [`property-${id}`] },
+  });
 
   return (
     <section className={styles.container}>

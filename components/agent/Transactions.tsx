@@ -1,5 +1,5 @@
 import { Agent } from 'types';
-import styles from './Transaction.module.css';
+import styles from './Transactions.module.css';
 
 type Props = {
   agent: Agent;
