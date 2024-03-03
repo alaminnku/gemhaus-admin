@@ -19,13 +19,17 @@ export default function AddTransaction({ id }: Props) {
 
   // Add agent's transaction
   async function handleSubmit(formData: FormData) {
-    const { error } = await fetchGemhausData(`/users/agent/${id}/transaction`, {
-      method: 'POST',
-      body: formData,
-      headers: {
-        Authorization: `Bearer ${data?.user.accessToken}`,
-      },
-    });
+    const { data: result, error } = await fetchGemhausData(
+      `/users/agent/${id}/transaction`,
+      {
+        method: 'POST',
+        body: formData,
+        headers: {
+          Authorization: `Bearer ${data?.user.accessToken}`,
+        },
+      }
+    );
+    console.log({ result });
     if (error) return setAlert({ message: error.message, type: 'failed' });
 
     revalidate(`agent-${id}`);

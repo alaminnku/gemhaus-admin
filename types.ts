@@ -87,6 +87,7 @@ export type AgentProperty = {
 };
 
 export type AgentTransaction = {
+  _id: string;
   address: string;
   type: 'sold' | 'available';
 };

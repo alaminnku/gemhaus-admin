@@ -24,7 +24,7 @@ export default function Transactions({ agent }: Props) {
         </thead>
         <tbody>
           {soldTransactions.map((transaction) => (
-            <tr>
+            <tr key={transaction._id}>
               <td>{transaction.address}</td>
               <td>{transaction.type}</td>
             </tr>
