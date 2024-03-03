@@ -14,18 +14,20 @@ type Props = {
 
 export default function AddTransaction({ id }: Props) {
   const router = useRouter();
-  const { data } = useSession();
+  const { update } = useSession();
   const { setAlert } = useAlert();
 
   // Add agent's transaction
   async function handleSubmit(formData: FormData) {
+    const session = await update();
+
     const { data: result, error } = await fetchGemhausData(
       `/users/agent/${id}/transaction`,
       {
         method: 'POST',
         body: formData,
         headers: {
-          Authorization: `Bearer ${data?.user.accessToken}`,
+          Authorization: `Bearer ${session?.user.accessToken}`,
         },
       }
     );

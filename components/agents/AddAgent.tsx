@@ -11,19 +11,20 @@ import { useSession } from 'next-auth/react';
 
 export default function AddAgent() {
   const router = useRouter();
-  const { data } = useSession();
+  const { update } = useSession();
   const { setAlert } = useAlert();
   const [bio, setBio] = useState('');
 
   // Add agent
   async function handleSubmit(formData: FormData) {
+    const session = await update();
     formData.append('bio', bio);
 
     const { error } = await fetchGemhausData('/users/agent', {
       method: 'POST',
       body: formData,
       headers: {
-        Authorization: `Bearer ${data?.user.accessToken}`,
+        Authorization: `Bearer ${session?.user.accessToken}`,
       },
     });
     if (error) return setAlert({ message: error.message, type: 'failed' });

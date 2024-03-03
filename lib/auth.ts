@@ -28,7 +28,7 @@ export const authOptions: NextAuthOptions = {
         formData.append('email', credentials.email);
         formData.append('password', credentials.password);
 
-        const { data, error } = await fetchGemhausData('/users/authorize', {
+        const { data, error } = await fetchGemhausData('/users/sign-in', {
           method: 'POST',
           body: formData,
         });

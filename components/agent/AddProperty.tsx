@@ -15,19 +15,20 @@ type Props = {
 
 export default function AddProperty({ id }: Props) {
   const router = useRouter();
-  const { data } = useSession();
+  const { update } = useSession();
   const { setAlert } = useAlert();
   const [description, setDescription] = useState('');
 
   // Add agent's property
   async function handleSubmit(formData: FormData) {
+    const session = await update();
     formData.append('description', description);
 
     const { error } = await fetchGemhausData(`/users/agent/${id}/property`, {
       method: 'POST',
       body: formData,
       headers: {
-        Authorization: `Bearer ${data?.user.accessToken}`,
+        Authorization: `Bearer ${session?.user.accessToken}`,
       },
     });
     if (error) return setAlert({ message: error.message, type: 'failed' });
