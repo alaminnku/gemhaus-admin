@@ -1,7 +1,9 @@
 import { NextAuthOptions } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import { fetchGemhausData } from './utils';
+import { JWT } from 'next-auth/jwt';
 
+// NextAuth options
 export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   session: {
@@ -39,6 +41,8 @@ export const authOptions: NextAuthOptions = {
           email: data.email,
           role: data.role,
           accessToken: data.accessToken,
+          refreshToken: data.refreshToken,
+          expiresIn: data.expiresIn,
         };
       },
     }),
@@ -48,8 +52,11 @@ export const authOptions: NextAuthOptions = {
       if (user) {
         token.role = user.role;
         token.accessToken = user.accessToken;
+        token.refreshToken = user.refreshToken;
+        token.expiresIn = user.expiresIn;
       }
-      return token;
+      if (Date.now() < token.expiresIn) return token;
+      return await refreshToken(token);
     },
     async session({ session, token }) {
       if (session.user) {
@@ -60,3 +67,21 @@ export const authOptions: NextAuthOptions = {
     },
   },
 };
+
+// Refresh token
+async function refreshToken(token: JWT) {
+  const { data, error } = await fetchGemhausData('/auth/refresh-token', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token.refreshToken}`,
+    },
+  });
+  if (error) return token;
+
+  return {
+    ...token,
+    accessToken: data.accessToken,
+    refreshToken: data.refreshToken,
+    expiresIn: data.expiresIn,
+  };
+}
