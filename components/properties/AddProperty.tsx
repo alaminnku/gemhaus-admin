@@ -29,7 +29,7 @@ export default function AddProperty({ offerings }: Props) {
       method: 'POST',
       body: formData,
       headers: {
-        Authorization: `Bearer ${data?.user.id}`,
+        Authorization: `Bearer ${data?.user.accessToken}`,
       },
     });
     if (error) return setAlert({ message: error.message, type: 'failed' });
