@@ -1,5 +1,6 @@
 .title,
 .content,
+.article_image,
 .file {
   margin-bottom: 2rem;
 }
@@ -15,6 +16,13 @@
   width: 100%;
   border-radius: 0.5rem;
   border: 1px solid #ccc;
+}
+
+.article_image {
+  display: block;
+  width: 10rem;
+  height: auto;
+  border-radius: 0.5rem;
 }
 
 .file {

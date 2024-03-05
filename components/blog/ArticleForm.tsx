@@ -6,15 +6,13 @@ import SubmitButton from '@components/layout/SubmitButton';
 
 type Props = {
   article?: Article;
-  content: string;
-  buttonText: 'Add Article';
+  buttonText: 'Add Article' | 'Edit Article';
   setContent: Dispatch<SetStateAction<string>>;
   handleSubmit: (formData: FormData) => Promise<void>;
 };
 
 export default function ArticleForm({
   article,
-  content,
   buttonText,
   setContent,
   handleSubmit,
@@ -34,13 +32,19 @@ export default function ArticleForm({
 
       <div className={styles.content}>
         <label>Article content*</label>
-        <RichText value={content} setValue={setContent} />
+        <RichText defaultValue={article?.content} setValue={setContent} />
       </div>
 
-      <div className={styles.file}>
-        <label htmlFor='file'>Upload article image*</label>
-        <input type='file' id='file' name='file' accept='image/*' />
-      </div>
+      {article?.image && (
+        <img className={styles.article_image} src={article.image} />
+      )}
+
+      {!article && (
+        <div className={styles.file}>
+          <label htmlFor='file'>Upload article image*</label>
+          <input type='file' id='file' name='file' accept='image/*' />
+        </div>
+      )}
 
       <SubmitButton text={buttonText} />
     </form>

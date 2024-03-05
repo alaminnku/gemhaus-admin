@@ -31,8 +31,9 @@ export type Article = {
   _id: string;
   title: string;
   image: string;
-  file: File | undefined;
+  content: string;
   createdAt: string;
+  file: File | undefined;
 };
 
 export type Offering = { name: string; icon: string };
