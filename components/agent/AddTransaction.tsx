@@ -22,7 +22,7 @@ export default function AddTransaction({ id }: Props) {
     const session = await update();
 
     const { data: result, error } = await fetchGemhausData(
-      `/users/agent/${id}/transaction`,
+      `/users/agents/${id}/transaction`,
       {
         method: 'POST',
         body: formData,

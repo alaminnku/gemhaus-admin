@@ -20,7 +20,7 @@ export default function AddAgent() {
     const session = await update();
     formData.append('bio', bio);
 
-    const { error } = await fetchGemhausData('/users/agent', {
+    const { error } = await fetchGemhausData('/users/agents', {
       method: 'POST',
       body: formData,
       headers: {

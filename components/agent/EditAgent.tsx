@@ -1,31 +1,33 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import PropertyForm from './PropertyForm';
+import AgentForm from '../agents/AgentForm';
 import { useState } from 'react';
 import { fetchGemhausData } from '@lib/utils';
 import revalidate from '@lib/revalidate';
-import styles from './AddProperty.module.css';
+import styles from './EditAgent.module.css';
 import { useAlert } from '@contexts/Alert';
 import { useSession } from 'next-auth/react';
+import { Agent } from 'types';
 
 type Props = {
   id: string;
+  agent: Agent;
 };
 
-export default function AddProperty({ id }: Props) {
+export default function EditAgent({ id, agent }: Props) {
   const router = useRouter();
   const { update } = useSession();
   const { setAlert } = useAlert();
-  const [description, setDescription] = useState('');
+  const [bio, setBio] = useState(agent.bio);
 
-  // Add agent's property
+  // Add agent
   async function handleSubmit(formData: FormData) {
     const session = await update();
-    formData.append('description', description);
+    formData.append('bio', bio);
 
-    const { error } = await fetchGemhausData(`/users/agents/${id}/property`, {
-      method: 'POST',
+    const { error } = await fetchGemhausData(`/users/agents/${id}/update`, {
+      method: 'PATCH',
       body: formData,
       headers: {
         Authorization: `Bearer ${session?.user.accessToken}`,
@@ -33,19 +35,18 @@ export default function AddProperty({ id }: Props) {
     });
     if (error) return setAlert({ message: error.message, type: 'failed' });
 
-    revalidate(`agent-${id}`);
-    router.push(`/agents/${id}`);
+    revalidate('agents');
+    router.push('/agents');
   }
 
   return (
     <section className={styles.container}>
-      <h1>Add Agent's Property</h1>
-
-      <PropertyForm
-        buttonText='Add Property'
+      <h1>Edit Agent</h1>
+      <AgentForm
+        agent={agent}
+        buttonText='Edit Agent'
+        setContent={setBio}
         handleSubmit={handleSubmit}
-        description={description}
-        setDescription={setDescription}
       />
     </section>
   );

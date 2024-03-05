@@ -243,10 +243,18 @@ export default function PropertyForm({
         </div>
       )}
 
-      <div className={styles.files}>
-        <label htmlFor='files'>Upload property images*</label>
-        <input multiple type='file' id='files' name='files' accept='image/*' />
-      </div>
+      {!property && (
+        <div className={styles.files}>
+          <label htmlFor='files'>Upload property images*</label>
+          <input
+            multiple
+            type='file'
+            id='files'
+            name='files'
+            accept='image/*'
+          />
+        </div>
+      )}
 
       <SubmitButton text={buttonText} />
     </form>

@@ -6,15 +6,13 @@ import { Agent } from 'types';
 
 type Props = {
   agent?: Agent;
-  content: string;
-  buttonText: 'Add Agent';
+  buttonText: 'Add Agent' | 'Edit Agent';
   setContent: Dispatch<SetStateAction<string>>;
   handleSubmit: (formData: FormData) => Promise<void>;
 };
 
 export default function AgentForm({
   agent,
-  content,
   buttonText,
   setContent,
   handleSubmit,
@@ -76,13 +74,17 @@ export default function AgentForm({
 
       <div className={styles.content}>
         <label>Agent bio*</label>
-        <RichText value={content} setValue={setContent} />
+        <RichText defaultValue={agent?.bio} setValue={setContent} />
       </div>
 
-      <div className={styles.file}>
-        <label htmlFor='file'>Upload agent image*</label>
-        <input type='file' id='file' name='file' accept='image/*' />
-      </div>
+      {agent?.image && <img className={styles.agent_image} src={agent.image} />}
+
+      {!agent && (
+        <div className={styles.file}>
+          <label htmlFor='file'>Upload agent image*</label>
+          <input type='file' id='file' name='file' accept='image/*' />
+        </div>
+      )}
 
       <SubmitButton text={buttonText} />
     </form>

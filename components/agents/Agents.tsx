@@ -5,7 +5,7 @@ import Error from '@components/layout/Error';
 import AgentCards from './AgentCards';
 
 export default async function Agents() {
-  const { data, error } = await fetchGemhausData('/users/agent', {
+  const { data, error } = await fetchGemhausData('/users/agents', {
     next: { tags: ['agents'] },
   });
 

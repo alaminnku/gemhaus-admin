@@ -12,6 +12,7 @@ export default function Hero({ agent }: Props) {
   return (
     <section className={styles.container}>
       <div className={styles.media}>
+        <LinkButton href={`/agents/${agent._id}/update`} text='Edit Agent' />
         <Image
           src={agent.image}
           width={500}
