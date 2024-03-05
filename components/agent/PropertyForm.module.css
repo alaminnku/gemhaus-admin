@@ -6,6 +6,7 @@
 
 .isFeatured,
 .description,
+.property_images,
 .files {
   margin-bottom: 2rem;
 }
@@ -49,6 +50,17 @@
   width: 100%;
   border-radius: 0.5rem;
   border: 1px solid #ccc;
+}
+
+.property_images {
+  display: flex;
+  gap: 1rem;
+}
+
+.property_images img {
+  width: 10rem;
+  height: auto;
+  border-radius: 0.5rem;
 }
 
 .files {

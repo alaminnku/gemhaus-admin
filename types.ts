@@ -86,7 +86,7 @@ export type AgentProperty = {
   address: string;
   city: string;
   state: string;
-  images: string;
+  images: string[];
   description: string;
   file: File | undefined;
 };

@@ -8,8 +8,7 @@ import SubmitButton from '@components/layout/SubmitButton';
 
 type Props = {
   property?: AgentProperty;
-  description: string;
-  buttonText: 'Add Property';
+  buttonText: 'Add Property' | 'Edit Property';
   handleSubmit: (formData: FormData) => Promise<void>;
   setDescription: Dispatch<SetStateAction<string>>;
 };
@@ -17,7 +16,6 @@ type Props = {
 export default function PropertyForm({
   property,
   buttonText,
-  description,
   setDescription,
   handleSubmit,
 }: Props) {
@@ -79,13 +77,32 @@ export default function PropertyForm({
 
       <div className={styles.description}>
         <label>Property description*</label>
-        <RichText value={description} setValue={setDescription} />
+        <RichText
+          defaultValue={property?.description}
+          setValue={setDescription}
+        />
       </div>
 
-      <div className={styles.files}>
-        <label htmlFor='files'>Upload property images*</label>
-        <input multiple type='file' id='files' name='files' accept='image/*' />
-      </div>
+      {property?.images && (
+        <div className={styles.property_images}>
+          {property.images.map((image, index) => (
+            <img key={index} src={image} />
+          ))}
+        </div>
+      )}
+
+      {!property && (
+        <div className={styles.files}>
+          <label htmlFor='files'>Upload property images*</label>
+          <input
+            multiple
+            type='file'
+            id='files'
+            name='files'
+            accept='image/*'
+          />
+        </div>
+      )}
 
       <SubmitButton text={buttonText} />
     </form>

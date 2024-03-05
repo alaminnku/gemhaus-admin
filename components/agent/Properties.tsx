@@ -2,6 +2,7 @@ import Image from 'next/image';
 import styles from './Properties.module.css';
 import { Agent } from 'types';
 import { createUSD } from '@lib/utils';
+import LinkButton from '@components/layout/LinkButton';
 
 type Props = {
   agent: Agent;
@@ -31,8 +32,13 @@ export default function Properties({ agent }: Props) {
                 {property.city}, {property.state}
               </p>
               <div
+                className={styles.about}
                 dangerouslySetInnerHTML={{ __html: property.description }}
               ></div>
+              <LinkButton
+                text='Edit Property'
+                href={`/agents/${agent._id}/${property._id}`}
+              />
             </div>
           </div>
         ))}
