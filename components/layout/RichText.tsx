@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import 'react-quill/dist/quill.snow.css';
 import dynamic from 'next/dynamic';
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
@@ -11,16 +11,16 @@ const TOOLBAR_OPTIONS = [
 ];
 
 type Props = {
-  value: string;
+  defaultValue?: string;
   setValue: Dispatch<SetStateAction<string>>;
 };
 
-export default function RichText({ value, setValue }: Props) {
+export default function RichText({ setValue, defaultValue }: Props) {
   return (
     <ReactQuill
       theme='snow'
-      value={value}
       onChange={setValue}
+      defaultValue={defaultValue}
       modules={{ toolbar: TOOLBAR_OPTIONS }}
     />
   );

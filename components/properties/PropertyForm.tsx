@@ -8,9 +8,9 @@ import SubmitButton from '@components/layout/SubmitButton';
 
 type Props = {
   property?: Property;
-  description: string;
   offerings: Offering[];
-  buttonText: 'Add Property';
+  selectedOfferings: string[];
+  buttonText: 'Add Property' | 'Edit Property';
   handleSubmit: (formData: FormData) => Promise<void>;
   setDescription: Dispatch<SetStateAction<string>>;
   setSelectedOfferings: Dispatch<SetStateAction<string[]>>;
@@ -20,9 +20,9 @@ export default function PropertyForm({
   property,
   offerings,
   buttonText,
-  description,
   setDescription,
   handleSubmit,
+  selectedOfferings,
   setSelectedOfferings,
 }: Props) {
   function handleOfferingsChange(e: ChangeEvent<HTMLInputElement>) {
@@ -207,9 +207,7 @@ export default function PropertyForm({
                   type='checkbox'
                   name={offering.name}
                   id={offering.name}
-                  checked={property?.offerings.some(
-                    (el) => el.name === offering.name
-                  )}
+                  checked={selectedOfferings.some((el) => el === offering.name)}
                   onChange={handleOfferingsChange}
                 />
                 <label htmlFor={offering.name}>{offering.name}</label>
@@ -220,14 +218,30 @@ export default function PropertyForm({
 
         <div className={styles.isFeatured}>
           <label htmlFor='isFeatured'>Is this property featured?</label>
-          <input type='checkbox' id='isFeatured' name='isFeatured' />
+          <input
+            type='checkbox'
+            checked={property?.isFeatured}
+            id='isFeatured'
+            name='isFeatured'
+          />
         </div>
       </div>
 
       <div className={styles.description}>
         <label>Property description*</label>
-        <RichText value={description} setValue={setDescription} />
+        <RichText
+          setValue={setDescription}
+          defaultValue={property?.description}
+        />
       </div>
+
+      {property?.images && (
+        <div className={styles.images}>
+          {property.images.map((image, index) => (
+            <img key={index} src={image} />
+          ))}
+        </div>
+      )}
 
       <div className={styles.files}>
         <label htmlFor='files'>Upload property images*</label>

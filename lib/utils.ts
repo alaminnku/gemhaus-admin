@@ -1,6 +1,6 @@
 type FetchGemhausDataOptions = {
   body?: FormData;
-  method?: 'POST' | 'DELETE';
+  method?: 'POST' | 'PATCH';
   next?: { tags: string[] };
   headers?: {
     Authorization: string;
