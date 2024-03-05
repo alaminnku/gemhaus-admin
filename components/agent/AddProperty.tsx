@@ -44,7 +44,6 @@ export default function AddProperty({ id }: Props) {
       <PropertyForm
         buttonText='Add Property'
         handleSubmit={handleSubmit}
-        description={description}
         setDescription={setDescription}
       />
     </section>

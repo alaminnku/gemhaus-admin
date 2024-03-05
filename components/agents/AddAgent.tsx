@@ -37,10 +37,9 @@ export default function AddAgent() {
     <section className={styles.container}>
       <h1>Add Agent</h1>
       <AgentForm
-        content={bio}
         setContent={setBio}
-        handleSubmit={handleSubmit}
         buttonText='Add Agent'
+        handleSubmit={handleSubmit}
       />
     </section>
   );

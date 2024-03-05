@@ -38,7 +38,6 @@ export default function AddArticle() {
       <h1>Add Article</h1>
 
       <ArticleForm
-        content={content}
         setContent={setContent}
         buttonText='Add Article'
         handleSubmit={handleSubmit}
