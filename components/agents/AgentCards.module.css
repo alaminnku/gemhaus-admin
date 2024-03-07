@@ -8,6 +8,6 @@
   .container {
     gap: 50px 18px;
     margin-bottom: 69px;
-    grid-template-columns: repeat(auto-fit, minmax(335px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(335px, 1fr));
   }
 }

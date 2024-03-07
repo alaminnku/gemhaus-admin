@@ -23,12 +23,9 @@
 }
 
 @media (min-width: 1024px) {
-  .container {
-    width: 335px;
-  }
-
+  .container,
   .container img {
-    height: 335px;
+    width: 335px;
   }
 
   .name {

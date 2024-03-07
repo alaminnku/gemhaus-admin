@@ -1,10 +1,10 @@
 type FetchGemhausDataOptions = {
   body?: FormData;
-  method?: 'POST' | 'PATCH';
   next?: { tags: string[] };
   headers?: {
     Authorization: string;
   };
+  method?: 'POST' | 'PATCH' | 'DELETE';
 };
 
 // Fetch Gemhaus data

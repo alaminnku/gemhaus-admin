@@ -20,6 +20,7 @@ export default function EditProperty({ id, property, offerings }: Props) {
   const router = useRouter();
   const { update } = useSession();
   const { setAlert } = useAlert();
+  const [images, setImages] = useState(property.images);
   const [description, setDescription] = useState(property.description);
   const [selectedOfferings, setSelectedOfferings] = useState<string[]>(
     property.offerings.map((el) => el.name)
@@ -27,9 +28,8 @@ export default function EditProperty({ id, property, offerings }: Props) {
 
   async function handleSubmit(formData: FormData) {
     const session = await update();
-
     formData.append('description', description);
-    formData.append('images', JSON.stringify(property.images));
+    formData.append('images', JSON.stringify(images));
     formData.append('offerings', JSON.stringify(selectedOfferings));
 
     const { error } = await fetchGemhausData(`/properties/${id}/update`, {
@@ -50,8 +50,10 @@ export default function EditProperty({ id, property, offerings }: Props) {
       <h1>Edit Property</h1>
 
       <PropertyForm
+        images={images}
         property={property}
         offerings={offerings}
+        setImages={setImages}
         buttonText='Edit Property'
         handleSubmit={handleSubmit}
         setDescription={setDescription}

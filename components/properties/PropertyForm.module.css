@@ -57,10 +57,28 @@
   gap: 1rem;
 }
 
-.images img {
+.image {
+  position: relative;
+}
+
+.image img {
   width: 10rem;
   height: auto;
   border-radius: 0.5rem;
+}
+
+.image button {
+  cursor: pointer;
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  font-size: 14px;
+  translate: -50% 0;
+  color: var(--white);
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 2rem;
+  background-color: red;
 }
 
 .files {

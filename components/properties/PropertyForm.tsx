@@ -1,22 +1,30 @@
 'use client';
 
-import { ChangeEvent, Dispatch, SetStateAction } from 'react';
+import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
 import { Offering, Property } from 'types';
 import styles from './PropertyForm.module.css';
 import RichText from '@components/layout/RichText';
 import SubmitButton from '@components/layout/SubmitButton';
+import { fetchGemhausData } from '@lib/utils';
+import { useSession } from 'next-auth/react';
+import { useAlert } from '@contexts/Alert';
+import Image from 'next/image';
 
 type Props = {
+  images?: string[];
   property?: Property;
   offerings: Offering[];
   selectedOfferings: string[];
   buttonText: 'Add Property' | 'Edit Property';
+  setImages?: Dispatch<SetStateAction<string[]>>;
   handleSubmit: (formData: FormData) => Promise<void>;
   setDescription: Dispatch<SetStateAction<string>>;
   setSelectedOfferings: Dispatch<SetStateAction<string[]>>;
 };
 
 export default function PropertyForm({
+  images,
+  setImages,
   property,
   offerings,
   buttonText,
@@ -25,6 +33,10 @@ export default function PropertyForm({
   selectedOfferings,
   setSelectedOfferings,
 }: Props) {
+  const { setAlert } = useAlert();
+  const { update } = useSession();
+  const [isDeleting, setIsDeleting] = useState(false);
+
   function handleOfferingsChange(e: ChangeEvent<HTMLInputElement>) {
     const name = e.target.name;
     setSelectedOfferings((prevState) =>
@@ -32,6 +44,31 @@ export default function PropertyForm({
         ? prevState.filter((offering) => offering !== name)
         : [...prevState, name]
     );
+  }
+
+  async function handleDeleteImage(image: string) {
+    if (!property) return;
+
+    setIsDeleting(true);
+    const session = await update();
+    const imageId = image.split('/')[image.split('/').length - 1];
+
+    const { data, error } = await fetchGemhausData(
+      `/properties/${property._id}/delete/${imageId}`,
+      {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${session?.user.accessToken}`,
+        },
+      }
+    );
+    if (error) return setAlert({ message: error.message, type: 'failed' });
+    setImages &&
+      setImages((prevState) =>
+        prevState.filter((image) => !image.includes(imageId))
+      );
+    setAlert({ message: data.message, type: 'success' });
+    setIsDeleting(false);
   }
 
   return (
@@ -235,26 +272,32 @@ export default function PropertyForm({
         />
       </div>
 
-      {property?.images && (
+      {images && images.length > 0 && (
         <div className={styles.images}>
-          {property.images.map((image, index) => (
-            <img key={index} src={image} />
+          {images.map((image, index) => (
+            <div className={styles.image}>
+              <Image
+                key={index}
+                src={image}
+                width={200}
+                height={200}
+                alt='Property image'
+              />
+              <button
+                disabled={isDeleting}
+                onClick={() => handleDeleteImage(image)}
+              >
+                Delete
+              </button>
+            </div>
           ))}
         </div>
       )}
 
-      {!property && (
-        <div className={styles.files}>
-          <label htmlFor='files'>Upload property images*</label>
-          <input
-            multiple
-            type='file'
-            id='files'
-            name='files'
-            accept='image/*'
-          />
-        </div>
-      )}
+      <div className={styles.files}>
+        <label htmlFor='files'>Upload property images*</label>
+        <input multiple type='file' id='files' name='files' accept='image/*' />
+      </div>
 
       <SubmitButton text={buttonText} />
     </form>
