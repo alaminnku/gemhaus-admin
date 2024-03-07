@@ -1,24 +1,63 @@
 'use client';
 
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { AgentProperty } from 'types';
 import styles from './PropertyForm.module.css';
 import RichText from '@components/layout/RichText';
 import SubmitButton from '@components/layout/SubmitButton';
+import { useAlert } from '@contexts/Alert';
+import { useSession } from 'next-auth/react';
+import { fetchGemhausData } from '@lib/utils';
+import Image from 'next/image';
 
 type Props = {
+  agentId?: string;
+  images: string[];
   property?: AgentProperty;
   buttonText: 'Add Property' | 'Edit Property';
+  setImages: Dispatch<SetStateAction<string[]>>;
   handleSubmit: (formData: FormData) => Promise<void>;
   setDescription: Dispatch<SetStateAction<string>>;
 };
 
 export default function PropertyForm({
+  images,
+  agentId,
+  setImages,
   property,
   buttonText,
   setDescription,
   handleSubmit,
 }: Props) {
+  const { setAlert } = useAlert();
+  const { update } = useSession();
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  async function handleDeleteImage(image: string) {
+    if (!property) return;
+
+    setIsDeleting(true);
+    const session = await update();
+    const imageId = image.split('/')[image.split('/').length - 1];
+
+    const { data, error } = await fetchGemhausData(
+      `/users/agents/${agentId}/properties/${property._id}/delete/${imageId}`,
+      {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${session?.user.accessToken}`,
+        },
+      }
+    );
+    if (error) return setAlert({ message: error.message, type: 'failed' });
+    setImages &&
+      setImages((prevState) =>
+        prevState.filter((image) => !image.includes(imageId))
+      );
+    setAlert({ message: data.message, type: 'success' });
+    setIsDeleting(false);
+  }
+
   return (
     <form action={handleSubmit}>
       <div className={styles.items}>
@@ -83,26 +122,32 @@ export default function PropertyForm({
         />
       </div>
 
-      {property?.images && (
-        <div className={styles.property_images}>
-          {property.images.map((image, index) => (
-            <img key={index} src={image} />
+      {images && images.length > 0 && (
+        <div className={styles.images}>
+          {images.map((image, index) => (
+            <div className={styles.image}>
+              <Image
+                key={index}
+                src={image}
+                width={200}
+                height={200}
+                alt='Property image'
+              />
+              <button
+                disabled={isDeleting}
+                onClick={() => handleDeleteImage(image)}
+              >
+                Delete
+              </button>
+            </div>
           ))}
         </div>
       )}
 
-      {!property && (
-        <div className={styles.files}>
-          <label htmlFor='files'>Upload property images*</label>
-          <input
-            multiple
-            type='file'
-            id='files'
-            name='files'
-            accept='image/*'
-          />
-        </div>
-      )}
+      <div className={styles.files}>
+        <label htmlFor='files'>Upload property images*</label>
+        <input multiple type='file' id='files' name='files' accept='image/*' />
+      </div>
 
       <SubmitButton text={buttonText} />
     </form>

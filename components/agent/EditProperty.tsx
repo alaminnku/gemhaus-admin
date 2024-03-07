@@ -8,7 +8,7 @@ import revalidate from '@lib/revalidate';
 import styles from './AddProperty.module.css';
 import { useAlert } from '@contexts/Alert';
 import { useSession } from 'next-auth/react';
-import { Agent, AgentProperty } from 'types';
+import { AgentProperty } from 'types';
 
 type Props = {
   id: string;
@@ -19,12 +19,14 @@ export default function EditProperty({ id, property }: Props) {
   const router = useRouter();
   const { update } = useSession();
   const { setAlert } = useAlert();
+  const [images, setImages] = useState(property.images);
   const [description, setDescription] = useState(property.description);
 
   // Add agent's property
   async function handleSubmit(formData: FormData) {
     const session = await update();
     formData.append('description', description);
+    formData.append('images', JSON.stringify(images));
 
     const { error } = await fetchGemhausData(
       `/users/agents/${id}/properties/${property._id}`,
@@ -47,6 +49,9 @@ export default function EditProperty({ id, property }: Props) {
       <h1>Edit Agent's Property</h1>
 
       <PropertyForm
+        agentId={id}
+        images={images}
+        setImages={setImages}
         property={property}
         buttonText='Edit Property'
         handleSubmit={handleSubmit}
