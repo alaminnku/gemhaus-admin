@@ -20,6 +20,7 @@ export default function EditAgent({ id, agent }: Props) {
   const { update } = useSession();
   const { setAlert } = useAlert();
   const [bio, setBio] = useState(agent.bio);
+  const [deletedImage, setDeletedImage] = useState('');
   const [image, setImage] = useState<string>(agent.image);
 
   // Add agent
@@ -27,6 +28,7 @@ export default function EditAgent({ id, agent }: Props) {
     const session = await update();
     formData.append('bio', bio);
     formData.append('image', image);
+    formData.append('deletedImage', deletedImage);
 
     const { error } = await fetchGemhausData(`/users/agents/${id}/update`, {
       method: 'PATCH',
@@ -52,6 +54,7 @@ export default function EditAgent({ id, agent }: Props) {
         buttonText='Edit Agent'
         setContent={setBio}
         handleSubmit={handleSubmit}
+        setDeletedImage={setDeletedImage}
       />
     </section>
   );

@@ -68,7 +68,7 @@
   border-radius: 0.5rem;
 }
 
-.image button {
+.image p {
   cursor: pointer;
   position: absolute;
   bottom: 12px;
@@ -77,7 +77,7 @@
   translate: -50% 0;
   color: var(--white);
   font-weight: 500;
-  padding: 4px 8px;
+  padding: 2px 10px;
   border-radius: 2rem;
   background-color: red;
 }

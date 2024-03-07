@@ -1,13 +1,10 @@
 'use client';
 
-import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
+import { ChangeEvent, Dispatch, SetStateAction } from 'react';
 import { Offering, Property } from 'types';
 import styles from './PropertyForm.module.css';
 import RichText from '@components/layout/RichText';
 import SubmitButton from '@components/layout/SubmitButton';
-import { fetchGemhausData } from '@lib/utils';
-import { useSession } from 'next-auth/react';
-import { useAlert } from '@contexts/Alert';
 import Image from 'next/image';
 
 type Props = {
@@ -19,6 +16,7 @@ type Props = {
   setImages?: Dispatch<SetStateAction<string[]>>;
   handleSubmit: (formData: FormData) => Promise<void>;
   setDescription: Dispatch<SetStateAction<string>>;
+  setDeletedImages?: Dispatch<SetStateAction<string[]>>;
   setSelectedOfferings: Dispatch<SetStateAction<string[]>>;
 };
 
@@ -30,13 +28,10 @@ export default function PropertyForm({
   buttonText,
   setDescription,
   handleSubmit,
+  setDeletedImages,
   selectedOfferings,
   setSelectedOfferings,
 }: Props) {
-  const { setAlert } = useAlert();
-  const { update } = useSession();
-  const [isDeleting, setIsDeleting] = useState(false);
-
   function handleOfferingsChange(e: ChangeEvent<HTMLInputElement>) {
     const name = e.target.name;
     setSelectedOfferings((prevState) =>
@@ -46,29 +41,10 @@ export default function PropertyForm({
     );
   }
 
-  async function handleDeleteImage(image: string) {
-    if (!property) return;
-
-    setIsDeleting(true);
-    const session = await update();
-    const imageId = image.split('/')[image.split('/').length - 1];
-
-    const { data, error } = await fetchGemhausData(
-      `/properties/${property._id}/delete/${imageId}`,
-      {
-        method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${session?.user.accessToken}`,
-        },
-      }
-    );
-    if (error) return setAlert({ message: error.message, type: 'failed' });
-    setImages &&
-      setImages((prevState) =>
-        prevState.filter((image) => !image.includes(imageId))
-      );
-    setAlert({ message: data.message, type: 'success' });
-    setIsDeleting(false);
+  function handleDeleteImage(image: string) {
+    if (!setImages || !setDeletedImages) return;
+    setDeletedImages((prevState) => [...prevState, image]);
+    setImages((prevState) => prevState.filter((el) => el !== image));
   }
 
   return (
@@ -283,12 +259,7 @@ export default function PropertyForm({
                 height={200}
                 alt='Property image'
               />
-              <button
-                disabled={isDeleting}
-                onClick={() => handleDeleteImage(image)}
-              >
-                Delete
-              </button>
+              <p onClick={() => handleDeleteImage(image)}>Delete</p>
             </div>
           ))}
         </div>

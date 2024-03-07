@@ -20,6 +20,7 @@ export default function EditArticle({ id, article }: Props) {
   const { update } = useSession();
   const { setAlert } = useAlert();
   const [content, setContent] = useState(article.content);
+  const [deletedImage, setDeletedImage] = useState('');
   const [image, setImage] = useState<string>(article.image);
 
   // Edit article
@@ -27,6 +28,7 @@ export default function EditArticle({ id, article }: Props) {
     const session = await update();
     formData.append('image', image);
     formData.append('content', content);
+    formData.append('deletedImage', deletedImage);
 
     const { error } = await fetchGemhausData(`/articles/${id}/update`, {
       method: 'PATCH',
@@ -52,6 +54,7 @@ export default function EditArticle({ id, article }: Props) {
         setContent={setContent}
         buttonText='Edit Article'
         handleSubmit={handleSubmit}
+        setDeletedImage={setDeletedImage}
       />
     </section>
   );

@@ -20,13 +20,15 @@ export default function EditProperty({ id, property }: Props) {
   const { update } = useSession();
   const { setAlert } = useAlert();
   const [images, setImages] = useState(property.images);
+  const [deletedImages, setDeletedImages] = useState<string[]>([]);
   const [description, setDescription] = useState(property.description);
 
-  // Add agent's property
+  // Edit agent's property
   async function handleSubmit(formData: FormData) {
     const session = await update();
     formData.append('description', description);
     formData.append('images', JSON.stringify(images));
+    formData.append('deletedImages', JSON.stringify(deletedImages));
 
     const { error } = await fetchGemhausData(
       `/users/agents/${id}/properties/${property._id}`,
@@ -56,6 +58,7 @@ export default function EditProperty({ id, property }: Props) {
         buttonText='Edit Property'
         handleSubmit={handleSubmit}
         setDescription={setDescription}
+        setDeletedImages={setDeletedImages}
       />
     </section>
   );
