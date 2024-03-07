@@ -1,22 +1,55 @@
 import SubmitButton from '@components/layout/SubmitButton';
 import styles from './AgentForm.module.css';
 import RichText from '@components/layout/RichText';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { Agent } from 'types';
+import { useAlert } from '@contexts/Alert';
+import { useSession } from 'next-auth/react';
+import { fetchGemhausData } from '@lib/utils';
+import Image from 'next/image';
 
 type Props = {
+  image?: string;
   agent?: Agent;
   buttonText: 'Add Agent' | 'Edit Agent';
+  setImage?: Dispatch<SetStateAction<string>>;
   setContent: Dispatch<SetStateAction<string>>;
   handleSubmit: (formData: FormData) => Promise<void>;
 };
 
 export default function AgentForm({
+  image,
+  setImage,
   agent,
   buttonText,
   setContent,
   handleSubmit,
 }: Props) {
+  const { setAlert } = useAlert();
+  const { update } = useSession();
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  async function handleDeleteImage(image: string) {
+    if (!agent) return;
+    setIsDeleting(true);
+    const session = await update();
+    const imageId = image.split('/')[image.split('/').length - 1];
+
+    const { data, error } = await fetchGemhausData(
+      `/users/agents/${agent._id}/delete/${imageId}`,
+      {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${session?.user.accessToken}`,
+        },
+      }
+    );
+    if (error) return setAlert({ message: error.message, type: 'failed' });
+
+    setIsDeleting(false);
+    setImage && setImage('');
+    setAlert({ message: data.message, type: 'success' });
+  }
   return (
     <form action={handleSubmit}>
       <div className={styles.items}>
@@ -77,14 +110,22 @@ export default function AgentForm({
         <RichText defaultValue={agent?.bio} setValue={setContent} />
       </div>
 
-      {agent?.image && <img className={styles.agent_image} src={agent.image} />}
-
-      {!agent && (
-        <div className={styles.file}>
-          <label htmlFor='file'>Upload agent image*</label>
-          <input type='file' id='file' name='file' accept='image/*' />
+      {image && (
+        <div className={styles.image}>
+          <Image src={image} width={200} height={200} alt='Article image' />
+          <button
+            disabled={isDeleting}
+            onClick={() => handleDeleteImage(image)}
+          >
+            Delete
+          </button>
         </div>
       )}
+
+      <div className={styles.file}>
+        <label htmlFor='file'>Upload agent image*</label>
+        <input type='file' id='file' name='file' accept='image/*' />
+      </div>
 
       <SubmitButton text={buttonText} />
     </form>

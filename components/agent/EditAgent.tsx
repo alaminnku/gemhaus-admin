@@ -20,11 +20,13 @@ export default function EditAgent({ id, agent }: Props) {
   const { update } = useSession();
   const { setAlert } = useAlert();
   const [bio, setBio] = useState(agent.bio);
+  const [image, setImage] = useState<string>(agent.image);
 
   // Add agent
   async function handleSubmit(formData: FormData) {
     const session = await update();
     formData.append('bio', bio);
+    formData.append('image', image);
 
     const { error } = await fetchGemhausData(`/users/agents/${id}/update`, {
       method: 'PATCH',
@@ -42,7 +44,10 @@ export default function EditAgent({ id, agent }: Props) {
   return (
     <section className={styles.container}>
       <h1>Edit Agent</h1>
+
       <AgentForm
+        image={image}
+        setImage={setImage}
         agent={agent}
         buttonText='Edit Agent'
         setContent={setBio}

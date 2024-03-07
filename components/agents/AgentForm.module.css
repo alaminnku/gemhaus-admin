@@ -6,7 +6,7 @@
 
 .items,
 .content,
-.agent_image,
+.image,
 .file {
   margin-bottom: 2rem;
 }
@@ -24,11 +24,29 @@
   border: 1px solid #ccc;
 }
 
-.agent_image {
-  display: block;
+.image {
   width: 10rem;
+  position: relative;
+}
+
+.image img {
+  width: 100%;
   height: auto;
   border-radius: 0.5rem;
+}
+
+.image button {
+  cursor: pointer;
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  font-size: 14px;
+  translate: -50% 0;
+  color: var(--white);
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 2rem;
+  background-color: red;
 }
 
 .file {
