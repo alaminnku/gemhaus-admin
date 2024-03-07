@@ -9,7 +9,7 @@ import Image from 'next/image';
 
 type Props = {
   agentId?: string;
-  images: string[];
+  images?: string[];
   property?: AgentProperty;
   buttonText: 'Add Property' | 'Edit Property';
   setImages?: Dispatch<SetStateAction<string[]>>;
