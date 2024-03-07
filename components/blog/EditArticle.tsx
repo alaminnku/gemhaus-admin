@@ -20,10 +20,12 @@ export default function EditArticle({ id, article }: Props) {
   const { update } = useSession();
   const { setAlert } = useAlert();
   const [content, setContent] = useState(article.content);
+  const [image, setImage] = useState<string>(article.image);
 
-  // Add article
+  // Edit article
   async function handleSubmit(formData: FormData) {
     const session = await update();
+    formData.append('image', image);
     formData.append('content', content);
 
     const { error } = await fetchGemhausData(`/articles/${id}/update`, {
@@ -44,6 +46,8 @@ export default function EditArticle({ id, article }: Props) {
       <h1>Edit Article</h1>
 
       <ArticleForm
+        image={image}
+        setImage={setImage}
         article={article}
         setContent={setContent}
         buttonText='Edit Article'
