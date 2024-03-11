@@ -34,15 +34,28 @@ export default function ArticleForm({
 
   return (
     <form action={handleSubmit}>
-      <div className={styles.title}>
-        <label htmlFor='title'>Article title*</label>
-        <input
-          type='text'
-          id='title'
-          name='title'
-          defaultValue={article?.title}
-          placeholder='Enter your article title'
-        />
+      <div className={styles.items}>
+        <div className={styles.item}>
+          <label htmlFor='title'>Article title*</label>
+          <input
+            type='text'
+            id='title'
+            name='title'
+            defaultValue={article?.title}
+            placeholder='Enter your article title'
+          />
+        </div>
+
+        <div className={styles.item}>
+          <label htmlFor='excerpt'>Article excerpt*</label>
+          <input
+            type='text'
+            id='excerpt'
+            name='excerpt'
+            defaultValue={article?.excerpt}
+            placeholder='Enter your article excerpt'
+          />
+        </div>
       </div>
 
       <div className={styles.content}>
